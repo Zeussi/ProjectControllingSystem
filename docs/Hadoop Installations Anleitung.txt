@@ -1,0 +1,25 @@
+############
+############
+Hadoop/Hive
+############
+############
+
+Quelle;
+https://cwiki.apache.org/confluence/display/Hive/GettingStarted Installationsanleitung
+http://artfiles.org/apache.org/hive/ Hive Download
+http://apache.imsam.info/hadoop/common/ Hadoop Download
+
+export HIVE_HOME=PFAD ZU HIVE
+export PATH=$HIVE_HOME/bin:$PATH
+--------------------------------------
+
+export HADOOP_HOME=<hadoop-install-dir>
+
+$HADOOP_HOME/bin/hadoop fs -mkdir       /tmp
+$HADOOP_HOME/bin/hadoop fs -mkdir       /user/hive/warehouse
+$HADOOP_HOME/bin/hadoop fs -chmod g+w   /tmp
+$HADOOP_HOME/bin/hadoop fs -chmod g+w   /user/hive/warehouse
+
+
+hive
+SET mapred.job.tracker=local;
