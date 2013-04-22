@@ -1,4 +1,4 @@
-package edu.hm.cs.team8.persistence.datamodel.mock;
+package edu.hm.cs.team8.persistence.mock;
 
 import java.util.ArrayList;
 import java.util.List;
