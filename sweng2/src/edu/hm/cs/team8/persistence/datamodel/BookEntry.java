@@ -1,4 +1,4 @@
-package edu.hm.cs.team8.persistence.datamodell;
+package edu.hm.cs.team8.persistence.datamodel;
 
 import java.util.Date;
 

@@ -1,15 +1,15 @@
-package edu.hm.cs.team8.persistence.datamodell.mock;
+package edu.hm.cs.team8.persistence.datamodel.mock;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.hm.cs.team8.persistence.DatamodellAccess;
-import edu.hm.cs.team8.persistence.datamodell.Account;
-import edu.hm.cs.team8.persistence.datamodell.Area;
-import edu.hm.cs.team8.persistence.datamodell.Member;
-import edu.hm.cs.team8.persistence.datamodell.Projekt;
+import edu.hm.cs.team8.persistence.DatamodelAccess;
+import edu.hm.cs.team8.persistence.datamodel.Account;
+import edu.hm.cs.team8.persistence.datamodel.Area;
+import edu.hm.cs.team8.persistence.datamodel.Member;
+import edu.hm.cs.team8.persistence.datamodel.Projekt;
 
-public class DatamodellAccessMock implements DatamodellAccess {
+public class DatamodelAccessMock implements DatamodelAccess {
 
 	@Override
 	public List<Member> getMembers() {
