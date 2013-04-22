@@ -1,4 +1,4 @@
-package edu.hm.cs.team8.persistence;
+package edu.hm.cs.team8.persistence.datamodell;
 
 public class Account {
 
