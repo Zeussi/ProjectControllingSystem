@@ -1,0 +1,68 @@
+##############
+##############
+Übungsblatt 1
+##############
+##############
+
+## Aufgabe 1: Formulieren Sie im Team ein Produkt-Statement 
+
+TODO's:
+- Definiton des Produkts
+------------------------
+	- PCS das geschäftskritische Kennzahlen ermittelt und visualisiert
+	- Quelle sind Buchungssätze die in einer CSV Datei vorliegen
+
+- Ziele
+-------
+	- Automatisierung der Aufbereitung der Geschäftszahlen
+	- Zeitersparnis
+
+- Abgrenzung => Was ist es nicht?
+---------------------------------
+	- keine manuelle Eingabe von Daten
+	
+- Funktionale Ziele (Was kann es?)
+----------------------------------
+	- Berechnung von Kennzahlen aus Buchungssätzen
+	- Filtern der Buchungssätzen nach relevaten Kriterien
+
+- Geschäftliche Ziele (Business Use-Cases)
+------------------------------------------
+
+## Aufgabe 2: Führen Sie eine Nutzeranalyse durch 
+
+TODO's':
+- Personas (Anwender) herauskristalisieren
+------------------------------------------
+	- Paul: Projektleiter
+
+- Name, Bild, Eigenschaften der Personen
+-----------------------------------------
+	- Hochschulabschluss in Informatik
+
+## Aufgabe 3: Fertigen Sie eine Bedürfnisanalyse an
+
+TODO's:
+- Befragung der Personas: Was ist wichtig, Was wünschen sie sich (Taks)?
+-----------------------------------------------------------------
+	- Quartal auswählen (+)
+	- Quartal hochladen (o)
+	- Kennzahlen Anzeigen (+)
+	- Buchungssätze filtern (+)
+	- Filter speichern (-)
+
+## Aufgabe 4. Erstellen Sie ein Task-Modell für Ihr Studienprojekt 
+
+	- Webanwendung => Keine Installation notwendig
+	- Tasks gegenüberstellen
+	- Ergebnis: UML-Activity Diagramm
+	- An Beispiel orientieren
+
+## Aufgabe 5. Entwickeln Sie einen Low-Fidelity Prototyp 
+
+TODO's
+- Software: pencil
+- Protoypen der GUI erstellen
+- An Prioritäten von Aufgabe 4 achten
+
+#################################################

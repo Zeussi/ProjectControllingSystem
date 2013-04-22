@@ -1,0 +1,24 @@
+Variabilitätsanalyse
+Welche Stellen müssen angepasst werden?
+Wie sehr muss die Architektur dafür umgebaut werden?
+
+
+Tasks der Priorität B:
+
+-Datei importieren Dialog
+Der Dialog ist nach der Menge der hochzuladenden Dateien anzupassen. Es wird davon ausgegangen, dass nur eine Datei hochgeladen wird.
+
+-Filter-Logik Architektur entwerfen
+Die Filterlogik sollte von den zu Grunde liegenden Daten entkoppelt werden, so dass eine Anpassung nicht erforderlich ist. Hier wäre ein DAO Konzept vorteilhaft. 
+
+-Kennzahlen-Logik entwickeln
+Die Kennzahlen werden je nach Bedarf aus den vorhandenen Daten berechnet. Auch hier ist eine Entkopplung von der tatsächlichen Speicherlogik sinnvoll.
+
+-JS Charts-Funktionen erstellen
+Die Daten müssen in einer Form vom Server zurückgegeben werden, so dass eine Anzeige mit dem entsprechenden JS Framework möglich ist.
+
+-JS Framework integrieren
+Das JS Framework muss je so intgriert werden, dass es mit der Art und Form der Daten zurecht kommt. Bei Änderungen sind Anpassungen nötig.
+
+-Testdaten generieren
+Es muss nichts an der Architektur angepasst werden, da die Testdaten nach den Anforderungen generiert werden.
