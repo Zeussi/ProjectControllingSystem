@@ -20,4 +20,16 @@ public class Member {
 		return mId;
 	}
 
+	public void setmId(long mId) {
+		this.mId = mId;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
 }
