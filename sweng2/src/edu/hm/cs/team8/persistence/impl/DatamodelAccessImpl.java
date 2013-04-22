@@ -1,6 +1,5 @@
-package edu.hm.cs.team8.persistence.mock;
+package edu.hm.cs.team8.persistence.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.hm.cs.team8.persistence.DatamodelAccess;
@@ -10,24 +9,28 @@ import edu.hm.cs.team8.persistence.datamodel.BookEntry;
 import edu.hm.cs.team8.persistence.datamodel.Member;
 import edu.hm.cs.team8.persistence.datamodel.Projekt;
 
-public class DatamodelAccessMock implements DatamodelAccess {
+public class DatamodelAccessImpl implements DatamodelAccess {
 
+	private static final String getMembersQuery = "Select MA-ID, Mitarbeiter, Entwicklungsstufe from DB group by MA-ID";
+
+	private static final String getAccountsQuery = "select Konto from DB group by Konto";
+	
+	private static final String getAreasQuery = "select Bereich from DB group by Bereich";
+	
+	private static final String getProjectsQuery = "select Project from DB group by Project";
+	
+	private static final String getBookEntriesQuery = "select MA-ID, Stunden, Monat, Konto, fakturierbar, Grenzkosten, Verrechnungssatz from DB";
+	
 	@Override
 	public List<Member> getMembers() {
+
 		
-		final List<Member> members = new ArrayList<>();
-		final Member member1 = new Member();
-		member1.setName("Andi");
-		member1.setLevel(100);
-		member1.setmId(1);
-		members.add(member1);
-		
-		return members;
+		return null;
 	}
 
 	@Override
 	public List<Account> getAccounts() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
