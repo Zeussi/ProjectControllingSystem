@@ -1,6 +1,11 @@
 package edu.hm.cs.team8.filter.dto;
 
-public class Filter {
-	
+import java.util.List;
+
+import edu.hm.cs.team8.persistence.datamodel.BookEntry;
+
+public interface Filter {
+
+	List<BookEntry> apply();
 
 }
