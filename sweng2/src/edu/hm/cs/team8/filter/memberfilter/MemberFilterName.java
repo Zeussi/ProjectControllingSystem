@@ -1,9 +1,11 @@
 package edu.hm.cs.team8.filter.memberfilter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.hm.cs.team8.filter.dto.Compare;
 import edu.hm.cs.team8.filter.dto.Filter;
+import edu.hm.cs.team8.filter.to.BookEntryResult;
 import edu.hm.cs.team8.persistence.DatamodelAccess;
 import edu.hm.cs.team8.persistence.datamodel.BookEntry;
 import edu.hm.cs.team8.persistence.datamodel.Member;
@@ -24,18 +26,20 @@ public class MemberFilterName implements Filter {
 	}
 
 	@Override
-	public List<BookEntry> apply() {
+	public List<BookEntryResult> apply() {
 		final List<BookEntry> entries = dataAccess.getBookEntries();
+		
+		final List<BookEntryResult> result = new ArrayList<>();
 
 		for (int index = 0; index < entries.size(); index++) {
 
 			final Member entry = entries.get(index).getMember();
 
-			if (entry.getName().compareTo(name) != compare.getState())
+			if (entry.getName().compareTo(name) == compare.getState())
 				entries.remove(index);
 		}
 
-		return entries;
+		return result;
 	}
 
 }

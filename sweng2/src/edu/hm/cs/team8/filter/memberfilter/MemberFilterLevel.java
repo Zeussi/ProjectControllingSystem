@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.hm.cs.team8.filter.dto.Compare;
 import edu.hm.cs.team8.filter.dto.Filter;
+import edu.hm.cs.team8.filter.to.BookEntryResult;
 import edu.hm.cs.team8.persistence.DatamodelAccess;
 import edu.hm.cs.team8.persistence.datamodel.BookEntry;
 import edu.hm.cs.team8.persistence.datamodel.Member;
@@ -24,7 +25,7 @@ public class MemberFilterLevel implements Filter {
 	}
 
 	@Override
-	public List<BookEntry> apply() {
+	public List<BookEntryResult> apply() {
 		final List<BookEntry> entries = dataAccess.getBookEntries();
 
 		for (int index = 0; index < entries.size(); index++) {
