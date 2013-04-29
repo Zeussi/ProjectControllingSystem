@@ -26,10 +26,10 @@ public class MemberFilterName implements Filter {
 	}
 
 	@Override
-	public List<BookEntryResult> apply() {
+	public List<BookEntry> apply() {
 		final List<BookEntry> entries = dataAccess.getBookEntries();
 		
-		final List<BookEntryResult> result = new ArrayList<>();
+		final List<BookEntry> result = new ArrayList<>();
 
 		for (int index = 0; index < entries.size(); index++) {
 

@@ -8,5 +8,5 @@ import edu.hm.cs.team8.persistence.datamodel.BookEntry;
 
 public interface Filterlogic {
 
-	public List<BookEntryResult> filter(final Filter filter);
+	public List<BookEntry> filter(final Filter filter);
 }

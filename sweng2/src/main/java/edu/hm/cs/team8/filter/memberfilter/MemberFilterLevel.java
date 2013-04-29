@@ -25,7 +25,7 @@ public class MemberFilterLevel implements Filter {
 	}
 
 	@Override
-	public List<BookEntryResult> apply() {
+	public List<BookEntry> apply() {
 		final List<BookEntry> entries = dataAccess.getBookEntries();
 
 		for (int index = 0; index < entries.size(); index++) {

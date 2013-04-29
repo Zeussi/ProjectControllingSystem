@@ -7,6 +7,6 @@ import edu.hm.cs.team8.persistence.datamodel.BookEntry;
 
 public interface Filter {
 
-	List<BookEntryResult> apply();
+	List<BookEntry> apply();
 
 }
