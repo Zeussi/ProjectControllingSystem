@@ -11,15 +11,15 @@ import edu.hm.cs.team8.persistence.datamodel.Projekt;
 
 public class DatamodelAccessImpl implements DatamodelAccess {
 
-	private static final String getMembersQuery = "Select MA-ID, Mitarbeiter, Entwicklungsstufe from DB group by MA-ID";
+	private static final String getMembersQuery = "Select MID, mitarbeiter, entwicklungsstufe from BI group by MID, mitarbeiter, entwicklungsstufe";
 
-	private static final String getAccountsQuery = "select Konto from DB group by Konto";
+	private static final String getAccountsQuery = "select Konto from BI group by Konto";
 	
-	private static final String getAreasQuery = "select Bereich from DB group by Bereich";
+	private static final String getAreasQuery = "select Bereich from BI group by Bereich";
 	
-	private static final String getProjectsQuery = "select Project from DB group by Project";
+	private static final String getProjectsQuery = "select Projekt from BI group by Projekt";
 	
-	private static final String getBookEntriesQuery = "select MA-ID, Stunden, Monat, Konto, fakturierbar, Grenzkosten, Verrechnungssatz from DB";
+	private static final String getBookEntriesQuery = "select MID, Stunden, Monat, Konto, fakturierbar, Grenzkosten, Verrechnungssatz from BI";
 	
 	@Override
 	public List<Member> getMembers() {
