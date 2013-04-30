@@ -39,7 +39,44 @@
 		<artifactId>jersey-json</artifactId>
 		<version>1.14</version>
 	</dependency>
+
+	<dependency>
+		<groupId>org.jdbi</groupId>
+		<artifactId>jdbi</artifactId>
+		<version>2.48.2</version>
+	</dependency>
 	
+	<dependency>
+		<groupId>org.apache.hive</groupId>
+		<artifactId>hive-jdbc</artifactId>
+		<version>0.10.0</version>
+      	  <exclusions>
+			<exclusion>
+			  <groupId>sqlline</groupId>
+			  <artifactId>sqlline</artifactId>
+			</exclusion>
+			
+			<exclusion>
+		  <groupId>javax.jdo</groupId>
+		  <artifactId>jdo2-api</artifactId>
+		</exclusion>
+            
+	  </exclusions>   
+	</dependency>
+            
+					
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+            
+			<dependency>
+	<groupId>org.apache.hadoop</groupId>
+	<artifactId>hadoop-core</artifactId>
+	<version>0.20.2</version>
+</dependency>
+            
   </dependencies>
 
   <build>
