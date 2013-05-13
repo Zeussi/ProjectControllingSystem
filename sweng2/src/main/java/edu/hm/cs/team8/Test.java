@@ -2,6 +2,8 @@ package edu.hm.cs.team8;
 
 import java.util.Set;
 
+import org.skife.jdbi.v2.DBI;
+
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.impl.KeyFiguresCalculatorImpl;
 import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
@@ -21,10 +23,14 @@ public class Test {
 		// print(masterdata.getAccountDAO().getAccounts());
 		//
 		// print(timetrackingManagment.getTimeTrackingDAO().getTimeTrackings());
-		print(timetrackingManagment.getTimeTrackingDAO().findTimeTrackingsByMember("Max Mustermann"));
+		Class.forName("org.apache.hadoop.hive.jdbc.HiveDriver");
+		final DBI dbi = new DBI("jdbc:hive://194.97.152.47:10000/default", "", "");
+
+		print(timetrackingManagment.getTimeTrackingDAO(dbi.open()).findTimeTrackingsByMember(100));
 
 		IKeyFiguresCalculator calc = new KeyFiguresCalculatorImpl();
-		System.out.println(calc.calculateFigures());
+
+		print(calc.calculateFigures(timetrackingManagment.getTimeTrackingDAO(dbi.open())));
 
 	}
 

@@ -1,2 +1,15 @@
 template: Hello, %s!
 defaultName: Stranger
+
+database:
+  # the name of your JDBC driver
+  driverClass: org.apache.hadoop.hive.jdbc.HiveDriver
+
+  # the username
+  user:
+
+  # the password
+  password:
+
+  # the JDBC URL
+  url: jdbc:hive://194.97.152.47:10000/default

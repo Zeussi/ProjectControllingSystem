@@ -1,24 +1,21 @@
 package edu.hm.cs.team8.keyfiguresCalculator.keyfigure;
 
-import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.value.KeyFigureMeasure;
-import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.value.KeyFigureValue;
-import edu.hm.cs.team8.masterdata.IMasterData;
-import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
+import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureMeasure;
+import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureResult;
+import edu.hm.cs.team8.timetrackingmangement.dao.TimeTrackingDAO;
 
 public class WorkloadKeyFigure implements IKeyFigure {
 
 	@Override
-	public KeyFigureValue calculate(IMasterData masterdata, ITimeTrackingMangement timetrackingManagement) {
+	public KeyFigureResult calculate(KeyFigures keyfigure, TimeTrackingDAO dao) {
 
-		final int performance = (int) new PerformanceKeyFigure().calculate(masterdata, timetrackingManagement)
-				.getValue();
+		final double performance = (double) new PerformanceKeyFigure().calculate(keyfigure, dao).getValue();
 
-		final int billablePerformance = (int) new BillablePerformanceKeyFigure().calculate(masterdata,
-				timetrackingManagement).getValue();
+		final double billablePerformance = (double) new BillablePerformanceKeyFigure().calculate(keyfigure, dao).getValue();
 
-		final double result = billablePerformance / (double) performance;
+		final double result = billablePerformance / performance;
 
-		return new KeyFigureValue(result, KeyFigureMeasure.NONE);
+		return new KeyFigureResult(keyfigure, KeyFigureMeasure.RATIO, result);
 
 	}
 

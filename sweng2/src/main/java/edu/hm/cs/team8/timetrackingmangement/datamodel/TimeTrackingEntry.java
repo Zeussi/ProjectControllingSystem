@@ -1,10 +1,14 @@
 package edu.hm.cs.team8.timetrackingmangement.datamodel;
 
+
 public class TimeTrackingEntry {
 
-	private final String account;
-	private final long mid;
+	private final Account account;
+
+	private final Member member;
+
 	private final double workedHours;
+
 	private final boolean billable;
 
 	/** Grenzkosten. */
@@ -16,9 +20,9 @@ public class TimeTrackingEntry {
 	/** MM-YYYY. */
 	private final String date;
 
-	public TimeTrackingEntry(final long mid, final String account, final double workedHours, final boolean billable,
-			final double incrementalCosts, final double costRate, final String date) {
-		this.mid = mid;
+	public TimeTrackingEntry(final Member member, final Account account, final double workedHours,
+			final boolean billable, final double incrementalCosts, final double costRate, final String date) {
+		this.member = member;
 		this.account = account;
 		this.workedHours = workedHours;
 		this.billable = billable;
@@ -27,11 +31,7 @@ public class TimeTrackingEntry {
 		this.date = date;
 	}
 
-	public long getMid() {
-		return mid;
-	}
-
-	public String getAccount() {
+	public Account getAccount() {
 		return account;
 	}
 
@@ -43,21 +43,16 @@ public class TimeTrackingEntry {
 
 		final TimeTrackingEntry that = (TimeTrackingEntry) obj;
 
-		return that.getAccount().equals(getAccount()) && that.getMid() == getMid();
+		return that.getAccount().equals(getAccount()) && that.getMember().equals(getMember());
 
-	}
-
-	@Override
-	public int hashCode() {
-		return (int) (mid + account.hashCode());
 	}
 
 	@Override
 	public String toString() {
 		return String
 				.format("Account: %s%nM-ID: %s%nWorkedHours: %f%nBillable: %b%nDifferential Costs: %f%nCost Rate: %f%nDate: %s",
-						getAccount(), getMid(), getWorkedHours(), isBillable(), getIncrementalCosts(), getCostRate(),
-						getDate());
+						getAccount(), getMember().getmId(), getWorkedHours(), isBillable(), getIncrementalCosts(),
+						getCostRate(), getDate());
 	}
 
 	public double getWorkedHours() {
@@ -78,5 +73,9 @@ public class TimeTrackingEntry {
 
 	public String getDate() {
 		return date;
+	}
+
+	public Member getMember() {
+		return member;
 	}
 }

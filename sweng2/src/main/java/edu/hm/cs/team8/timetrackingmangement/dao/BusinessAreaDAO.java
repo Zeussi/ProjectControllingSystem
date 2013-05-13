@@ -1,4 +1,4 @@
-package edu.hm.cs.team8.masterdata.dao;
+package edu.hm.cs.team8.timetrackingmangement.dao;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -7,8 +7,8 @@ import java.util.Set;
 
 import org.skife.jdbi.v2.Handle;
 
-import edu.hm.cs.team8.masterdata.datamodel.BusinessArea;
-import edu.hm.cs.team8.masterdata.impl.Cache;
+import edu.hm.cs.team8.timetrackingmangement.datamodel.BusinessArea;
+import edu.hm.cs.team8.timetrackingmangement.impl.Cache;
 
 public class BusinessAreaDAO {
 

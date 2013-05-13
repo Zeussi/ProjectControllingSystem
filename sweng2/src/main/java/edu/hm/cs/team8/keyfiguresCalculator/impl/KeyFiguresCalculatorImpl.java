@@ -1,7 +1,9 @@
 package edu.hm.cs.team8.keyfiguresCalculator.impl;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.BillablePerformanceKeyFigure;
@@ -9,11 +11,8 @@ import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.IKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.KeyFigures;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.PerformanceKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.WorkloadKeyFigure;
-import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.value.KeyFigureValue;
-import edu.hm.cs.team8.masterdata.IMasterData;
-import edu.hm.cs.team8.masterdata.impl.MasterDataImpl;
-import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
-import edu.hm.cs.team8.timetrackingmangement.impl.TimeTrackingManagmentImpl;
+import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureResult;
+import edu.hm.cs.team8.timetrackingmangement.dao.TimeTrackingDAO;
 
 public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 
@@ -26,18 +25,16 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 	}
 
 	@Override
-	public Map<KeyFigures, KeyFigureValue> calculateFigures() throws ClassNotFoundException {
+	public Set<KeyFigureResult> calculateFigures(TimeTrackingDAO dao) {
 
-		final Map<KeyFigures, KeyFigureValue> result = new HashMap<>();
+		final Set<KeyFigureResult> result = new HashSet<>();
 
-		final IMasterData masterdata = new MasterDataImpl();
-
-		final ITimeTrackingMangement timetrackingManagement = new TimeTrackingManagmentImpl();
-
-		for (Map.Entry<KeyFigures, IKeyFigure> entry : logic.entrySet())
-			result.put(entry.getKey(), entry.getValue().calculate(masterdata, timetrackingManagement));
+		for (Map.Entry<KeyFigures, IKeyFigure> entry : logic.entrySet()) {
+			KeyFigureResult value = entry.getValue().calculate(entry.getKey(), dao);
+			
+			result.add(value);
+		}
 
 		return result;
 	}
-
 }

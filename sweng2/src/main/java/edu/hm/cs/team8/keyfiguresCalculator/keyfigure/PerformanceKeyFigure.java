@@ -2,33 +2,28 @@ package edu.hm.cs.team8.keyfiguresCalculator.keyfigure;
 
 import java.util.Set;
 
-import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.value.KeyFigureMeasure;
-import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.value.KeyFigureValue;
-import edu.hm.cs.team8.masterdata.IMasterData;
-import edu.hm.cs.team8.masterdata.datamodel.Account;
-import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
+import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureMeasure;
+import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureResult;
+import edu.hm.cs.team8.timetrackingmangement.dao.TimeTrackingDAO;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
 
 public class PerformanceKeyFigure implements IKeyFigure {
 
 	@Override
-	public KeyFigureValue calculate(IMasterData masterdata, ITimeTrackingMangement timetrackingManagement) {
+	public KeyFigureResult calculate(KeyFigures keyfigure, TimeTrackingDAO dao) {
 
-		final Set<TimeTrackingEntry> timeTrackings = timetrackingManagement.getTimeTrackingDAO().getTimeTrackings();
+		final Set<TimeTrackingEntry> timeTrackings = dao.getTimeTrackings();
 
-		final Account holiday = masterdata.getAccountDAO().findAccountByName("urlaub");
-		final Account ill = masterdata.getAccountDAO().findAccountByName("krank");
+		final Set<TimeTrackingEntry> holidays = dao.findTimeTrackingsByAccount("URLAUB");
+		final Set<TimeTrackingEntry> ills = dao.findTimeTrackingsByAccount("KRANK");
 
-		int sum = 0;
+		double sum = 0;
 
 		for (final TimeTrackingEntry timeTracking : timeTrackings) {
-			final Account other = masterdata.getAccountDAO().findAccountByName(timeTracking.getAccount());
-
-			if (!other.equals(holiday) && !other.equals(ill))
+			if (!holidays.contains(timeTracking) && !ills.contains(timeTracking))
 				sum += timeTracking.getWorkedHours();
 		}
 
-		return new KeyFigureValue(sum, KeyFigureMeasure.HOUR);
+		return new KeyFigureResult(keyfigure, KeyFigureMeasure.HOUR, sum);
 	}
-
 }

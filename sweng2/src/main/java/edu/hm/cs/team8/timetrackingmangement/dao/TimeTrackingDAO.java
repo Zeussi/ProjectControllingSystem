@@ -1,45 +1,50 @@
 package edu.hm.cs.team8.timetrackingmangement.dao;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import org.skife.jdbi.v2.Handle;
 
-import edu.hm.cs.team8.masterdata.IMasterData;
-import edu.hm.cs.team8.masterdata.datamodel.Account;
-import edu.hm.cs.team8.masterdata.datamodel.Member;
-import edu.hm.cs.team8.masterdata.datamodel.Project;
+import edu.hm.cs.team8.timetrackingmangement.datamodel.Account;
+import edu.hm.cs.team8.timetrackingmangement.datamodel.Member;
+import edu.hm.cs.team8.timetrackingmangement.datamodel.Project;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
 import edu.hm.cs.team8.timetrackingmangement.impl.Cache;
 
 public class TimeTrackingDAO {
 
 	private final Set<TimeTrackingEntry> timeTrackings = new HashSet<>();
-	private final IMasterData masterdata;
+	private final Handle handle;
 
-	public TimeTrackingDAO(final Handle handle, final IMasterData masterdata) {
+	public TimeTrackingDAO(final Handle handle) {
 
-		this.masterdata = masterdata;
+		this.handle = handle;
+
 		for (final Map<String, Object> line : Cache.getCache(handle)) {
 
-			timeTrackings.add(new TimeTrackingEntry(Long.parseLong(line.get("mid").toString()), line.get("konto")
-					.toString(), Double.parseDouble(line.get("stunden").toString()), Boolean.parseBoolean(line.get(
-					"fakturierbar").toString()), Double.parseDouble(line.get("grenzkosten").toString()), Double
-					.parseDouble(line.get("verrechnungssatz").toString()), line.get("monat").toString()));
+			final MemberDAO memberDao = new MemberDAO(handle);
+			final AccountDAO accountDao = new AccountDAO(handle);
+
+			final TimeTrackingEntry entry = new TimeTrackingEntry(memberDao.findMemberByID(Long.parseLong(line.get(
+					"mid").toString())), accountDao.findAccountByName(line.get("konto").toString()),
+					Double.parseDouble(line.get("stunden").toString()), Boolean.parseBoolean(line.get("fakturierbar")
+							.toString()), Double.parseDouble(line.get("grenzkosten").toString()),
+					Double.parseDouble(line.get("verrechnungssatz").toString()), line.get("monat").toString());
+
+			timeTrackings.add(entry);
 
 		}
 	}
 
-	public Set<TimeTrackingEntry> findTimeTrackingsByMember(final String name) {
+	public Set<TimeTrackingEntry> findTimeTrackingsByMember(final long id) {
 
-		final Member member = masterdata.getMemberDAO().findMemberByName(name);
+		final Member member = new MemberDAO(handle).findMemberByID(id);
 
 		final Set<TimeTrackingEntry> result = new HashSet<>();
 
 		for (TimeTrackingEntry timetracking : timeTrackings)
-			if (timetracking.getMid() == member.getmId())
+			if (timetracking.getMember().equals(member))
 				result.add(timetracking);
 
 		return result;
@@ -47,13 +52,13 @@ public class TimeTrackingDAO {
 
 	public Set<TimeTrackingEntry> findTimeTrackingsByAccount(final String accountName) {
 
-		final Account account = masterdata.getAccountDAO().findAccountByName(accountName);
+		final Account account = new AccountDAO(handle).findAccountByName(accountName);
 
 		final Set<TimeTrackingEntry> result = new HashSet<>();
 
 		for (TimeTrackingEntry timetracking : timeTrackings) {
 
-			final Account accountTimeTracking = masterdata.getAccountDAO().findAccountByName(timetracking.getAccount());
+			final Account accountTimeTracking = timetracking.getAccount();
 
 			if (account.equals(accountTimeTracking))
 				result.add(timetracking);
@@ -64,14 +69,13 @@ public class TimeTrackingDAO {
 
 	public Set<TimeTrackingEntry> findTimeTrackingsByProject(final String projectName) {
 
-		final Project project = masterdata.getProjectDAO().findProjectByName(projectName);
+		final Project project = new ProjectDAO(handle).findProjectByName(projectName);
 
 		final Set<TimeTrackingEntry> result = new HashSet<>();
 
 		for (final TimeTrackingEntry timetracking : timeTrackings) {
 
-			final Project ProjectTimeTracking = masterdata.getAccountDAO().findAccountByName(timetracking.getAccount())
-					.getProject();
+			final Project ProjectTimeTracking = timetracking.getAccount().getProject();
 
 			if (project.equals(ProjectTimeTracking))
 				result.add(timetracking);
@@ -81,7 +85,7 @@ public class TimeTrackingDAO {
 	}
 
 	public Set<TimeTrackingEntry> getTimeTrackings() {
-		return Collections.unmodifiableSet(timeTrackings);
+		return new HashSet<>(timeTrackings);
 	}
 
 }
