@@ -1,4 +1,4 @@
-package edu.hm.cs.team8.ui;
+package edu.hm.cs.team8;
 
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
@@ -14,25 +14,22 @@ import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
 import edu.hm.cs.team8.timetrackingmangement.impl.TimeTrackingManagmentImpl;
 import edu.hm.cs.team8.timetrackingmangement.ui.TimeTrackingResource;
 
-public class HelloWorldService extends Service<HelloWorldConfiguration> {
+public class ProjectControllingService extends Service<ProjectControllingConfiguration> {
 	public static void main(String[] args) throws Exception {
-		new HelloWorldService().run(args);
+		new ProjectControllingService().run(args);
 	}
 
 	@Override
-	public void initialize(Bootstrap<HelloWorldConfiguration> bootstrap) {
-		bootstrap.setName("hello-world");
+	public void initialize(Bootstrap<ProjectControllingConfiguration> bootstrap) {
+		bootstrap.setName("project-controlling-service");
 		bootstrap.addBundle(new ViewBundle());
 	}
 
 	@Override
-	public void run(HelloWorldConfiguration configuration, Environment environment) throws ClassNotFoundException {
-		final String template = configuration.getTemplate();
-		final String defaultName = configuration.getDefaultName();
-		environment.addResource(new HelloWorldResource(template, defaultName));
-		environment.addResource(new PersonResource());
+	public void run(ProjectControllingConfiguration configuration, Environment environment)
+			throws ClassNotFoundException {
 
-		final DBI dbi = new DBIFactory().build(environment, configuration.getDatabaseConfiguration(), "hive");
+		final DBI dbi = new DBIFactory().build(environment, configuration.getDatabaseConfiguration(), "hiveDB");
 
 		final Handle handle = dbi.open();
 

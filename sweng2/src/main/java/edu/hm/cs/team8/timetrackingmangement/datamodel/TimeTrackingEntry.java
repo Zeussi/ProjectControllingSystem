@@ -1,6 +1,5 @@
 package edu.hm.cs.team8.timetrackingmangement.datamodel;
 
-
 public class TimeTrackingEntry {
 
 	private final Account account;

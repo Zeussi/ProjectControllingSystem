@@ -49,7 +49,7 @@ public class TimeEntry {
 	public boolean contains(int month, int year) {
 		return year >= fromYear && month >= fromMonth && year <= toYear && month <= toMonth;
 	}
-	
+
 	@Override
 	public String toString() {
 		return String.format("%d.%d - %d.%d", fromMonth, fromYear, toMonth, toYear);
