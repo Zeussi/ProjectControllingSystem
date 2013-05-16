@@ -39,7 +39,7 @@ public class HelloWorldService extends Service<HelloWorldConfiguration> {
 		final ITimeTrackingMangement timeTracking = new TimeTrackingManagmentImpl();
 
 		environment.addResource(new TimeTrackingResource(timeTracking.getTimeTrackingDAO(handle)));
-		environment.addResource(new KeyFigureResource(timeTracking.getTimeTrackingDAO(handle)));
+		environment.addResource(new KeyFigureResource(handle));
 
 	}
 

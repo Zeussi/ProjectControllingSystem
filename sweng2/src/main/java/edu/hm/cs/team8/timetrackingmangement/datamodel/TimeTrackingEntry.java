@@ -17,18 +17,21 @@ public class TimeTrackingEntry {
 	/** Verrechnungssatz. */
 	private final double costRate;
 
-	/** MM-YYYY. */
-	private final String date;
+	private int month;
+
+	private int year;
 
 	public TimeTrackingEntry(final Member member, final Account account, final double workedHours,
-			final boolean billable, final double incrementalCosts, final double costRate, final String date) {
+			final boolean billable, final double incrementalCosts, final double costRate, final int month,
+			final int year) {
 		this.member = member;
 		this.account = account;
 		this.workedHours = workedHours;
 		this.billable = billable;
 		this.incrementalCosts = incrementalCosts;
 		this.costRate = costRate;
-		this.date = date;
+		this.setMonth(month);
+		this.setYear(year);
 	}
 
 	public Account getAccount() {
@@ -50,9 +53,9 @@ public class TimeTrackingEntry {
 	@Override
 	public String toString() {
 		return String
-				.format("Account: %s%nM-ID: %s%nWorkedHours: %f%nBillable: %b%nDifferential Costs: %f%nCost Rate: %f%nDate: %s",
+				.format("Account: %s%nM-ID: %s%nWorkedHours: %f%nBillable: %b%nDifferential Costs: %f%nCost Rate: %f%nDate: %d-%d",
 						getAccount(), getMember().getmId(), getWorkedHours(), isBillable(), getIncrementalCosts(),
-						getCostRate(), getDate());
+						getCostRate(), getMonth(), getYear());
 	}
 
 	public double getWorkedHours() {
@@ -71,11 +74,28 @@ public class TimeTrackingEntry {
 		return costRate;
 	}
 
-	public String getDate() {
-		return date;
-	}
-
 	public Member getMember() {
 		return member;
+	}
+
+	@Override
+	public int hashCode() {
+		return (int) (costRate + incrementalCosts + member.getLevel() + member.getmId());
+	}
+
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
 	}
 }
