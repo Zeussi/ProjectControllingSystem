@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <title>Basic usage</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ProjectControllingSystem</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/kendo.common.min.css">
+    <link rel="stylesheet" href="css/kendo.default.min.css">
+    <link rel="stylesheet" href="css/kendo.individual.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/individual.css">
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+
+<div id="example" >
+    <div id="vertical">
+        <div id="top-pane">
+            <div id="horizontal" style="height: 100%; width: 100%;">
+                <div id="left-pane">
+                    <div class="pane-content">
+                        <h3>Inner splitter / left pane</h3>
+                        <p>Resizable and collapsible.</p>
+                    </div>
+                </div>
+                <div id="center-pane">
+                    <div class="pane-content">
+                        <h3>Inner splitter / center pane</h3>
+                        <p>Resizable only.</p>
+                    </div>
+                </div>
+                <div id="right-pane">
+                    <div class="pane-content">
+                        <h3>Inner splitter / right pane</h3>
+                        <p>Resizable and collapsible.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="middle-pane">
+            <div class="pane-content">
+                <h3>Outer splitter / middle pane</h3>
+                <p>Resizable only.</p>
+            </div>
+        </div>
+        <div id="bottom-pane">
+            <div class="pane-content">
+                <h3>Outer splitter / bottom pane</h3>
+                <p>Non-resizable and non-collapsible.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#vertical").kendoSplitter({
+                orientation: "vertical",
+                panes: [
+                    { collapsible: false },
+                    { collapsible: false, size: "100px" },
+                    { collapsible: false, resizable: false, size: "100px" }
+                ]
+            });
+
+            $("#horizontal").kendoSplitter({
+                panes: [
+                    { collapsible: true, size: "220px" },
+                    { collapsible: false },
+                    { collapsible: true, size: "220px" }
+                ]
+            });
+        });
+    </script>
+
+    <style scoped>
+        #vertical {
+            height: 380px;
+            width: 700px;
+            margin: 0 auto;
+        }
+
+        #middle-pane { background-color: rgba(60, 70, 80, 0.10); }
+        #bottom-pane { background-color: rgba(60, 70, 80, 0.15); }
+        #left-pane, #center-pane, #right-pane  { background-color: rgba(60, 70, 80, 0.05); }
+
+        .pane-content {
+            padding: 0 10px;
+        }
+    </style>
+</div>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
+<script src="js/vendor/kendo.web.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

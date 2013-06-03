@@ -33,7 +33,7 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 
 		for (Map.Entry<KeyFigures, IKeyFigure> entry : logic.entrySet()) {
 			KeyFigureResult value = entry.getValue().calculate(entry.getKey(), handle, filters);
-
+			
 			result.add(value);
 		}
 
