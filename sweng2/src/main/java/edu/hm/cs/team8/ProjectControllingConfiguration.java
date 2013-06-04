@@ -1,4 +1,4 @@
-package edu.hm.cs.team8.ui;
+package edu.hm.cs.team8;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.yammer.dropwizard.config.Configuration;
 import com.yammer.dropwizard.db.DatabaseConfiguration;
 
-public class HelloWorldConfiguration extends Configuration {
+public class ProjectControllingConfiguration extends Configuration {
 	@NotEmpty
 	@JsonProperty
 	private String template;

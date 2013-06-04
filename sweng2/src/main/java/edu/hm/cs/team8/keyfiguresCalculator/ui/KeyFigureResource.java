@@ -27,9 +27,9 @@ public class KeyFigureResource {
 
 	@GET
 	public Set<KeyFigureResult> getMasterData() {
-		
+
 		final IKeyFiguresCalculator calc = new KeyFiguresCalculatorImpl();
-		
+
 		// TODO Echter Filter
 		return calc.calculateFigures(handle, new MockFilter(handle));
 
