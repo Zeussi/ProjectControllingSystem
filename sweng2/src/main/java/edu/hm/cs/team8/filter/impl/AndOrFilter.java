@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.skife.jdbi.v2.Handle;
-
 import edu.hm.cs.team8.filter.IFilter;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
 

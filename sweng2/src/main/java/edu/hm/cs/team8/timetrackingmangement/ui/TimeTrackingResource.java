@@ -8,9 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
-import edu.hm.cs.team8.timetrackingmangement.dao.TimeTrackingDAO;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
-import edu.hm.cs.team8.timetrackingmangement.impl.TimeTrackingManagmentImpl;
 
 @Path("/time-trackings")
 @Produces(MediaType.APPLICATION_JSON)

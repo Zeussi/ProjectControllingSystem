@@ -15,7 +15,6 @@ import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.PerformanceKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.WorkloadKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureResult;
 import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
-import edu.hm.cs.team8.timetrackingmangement.dao.TimeTrackingDAO;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
 
 public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {

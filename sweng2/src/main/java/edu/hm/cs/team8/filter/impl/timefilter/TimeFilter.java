@@ -4,9 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import edu.hm.cs.team8.filter.IFilter;
-import edu.hm.cs.team8.timetrackingmangement.dao.TimeTrackingDAO;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
-import edu.hm.cs.team8.timetrackingmangement.impl.TimeTrackingManagmentImpl;
 
 public class TimeFilter implements IFilter {
 

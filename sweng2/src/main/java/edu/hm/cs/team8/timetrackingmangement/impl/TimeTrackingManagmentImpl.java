@@ -11,7 +11,6 @@ public class TimeTrackingManagmentImpl implements ITimeTrackingMangement {
 
 	public TimeTrackingManagmentImpl(Handle handle) {
 		this.handle = handle;
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override

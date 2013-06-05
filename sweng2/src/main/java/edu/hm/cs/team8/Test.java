@@ -10,7 +10,6 @@ import edu.hm.cs.team8.filter.impl.FilterFactory;
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.impl.KeyFiguresCalculatorImpl;
 import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
-import edu.hm.cs.team8.timetrackingmangement.dao.TimeTrackingDAO;
 import edu.hm.cs.team8.timetrackingmangement.impl.TimeTrackingManagmentImpl;
 
 public class Test {

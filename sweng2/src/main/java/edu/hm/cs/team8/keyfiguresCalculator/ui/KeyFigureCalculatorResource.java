@@ -10,27 +10,21 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.skife.jdbi.v2.Handle;
-
 import edu.hm.cs.team8.filter.IFilter;
 import edu.hm.cs.team8.filter.impl.FilterFactory;
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
-import edu.hm.cs.team8.keyfiguresCalculator.impl.KeyFiguresCalculatorImpl;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureResult;
 import edu.hm.cs.team8.keyfiguresCalculator.to.FilterTO;
-import edu.hm.cs.team8.timetrackingmangement.dao.TimeTrackingDAO;
 
 @Path("/keyfigure-calculator")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class KeyFigureResource {
-
+public class KeyFigureCalculatorResource {
 
 	private IKeyFiguresCalculator calc;
 
-	public KeyFigureResource(IKeyFiguresCalculator calc) {
+	public KeyFigureCalculatorResource(IKeyFiguresCalculator calc) {
 		this.calc = calc;
-		// TODO Auto-generated constructor stub
 	}
 
 	@POST
