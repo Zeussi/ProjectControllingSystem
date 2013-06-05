@@ -10,7 +10,6 @@ import org.skife.jdbi.v2.Handle;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.Account;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.BusinessArea;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.Project;
-import edu.hm.cs.team8.timetrackingmangement.impl.Cache;
 
 public class AccountDAO {
 

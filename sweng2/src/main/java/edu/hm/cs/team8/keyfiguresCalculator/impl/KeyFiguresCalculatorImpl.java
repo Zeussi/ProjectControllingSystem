@@ -36,7 +36,7 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 
 		final Set<KeyFigureResult> result = new HashSet<>();
 
-		final Set<TimeTrackingEntry> andAndOr = and(or(filters, timeTracking.getTimeTrackingDAO().getTimeTrackings()));
+		final Set<TimeTrackingEntry> andAndOr = and(or(filters, timeTracking.getTimeTrackings()));
 
 		for (Map.Entry<KeyFigures, IKeyFigure> entry : logic.entrySet()) {
 			KeyFigureResult value = entry.getValue().calculate(entry.getKey(), andAndOr);

@@ -1,9 +1,11 @@
 package edu.hm.cs.team8.timetrackingmangement;
 
-import edu.hm.cs.team8.timetrackingmangement.dao.TimeTrackingDAO;
+import java.util.Set;
+
+import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
 
 public interface ITimeTrackingMangement {
 
-	public TimeTrackingDAO getTimeTrackingDAO();
+	public Set<TimeTrackingEntry> getTimeTrackings();
 
 }

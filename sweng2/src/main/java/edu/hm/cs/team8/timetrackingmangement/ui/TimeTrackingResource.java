@@ -23,7 +23,7 @@ public class TimeTrackingResource {
 
 	@GET
 	public Set<TimeTrackingEntry> getMasterData() {
-		return timeTracking.getTimeTrackingDAO().getTimeTrackings();
+		return timeTracking.getTimeTrackings();
 	}
 
 }
