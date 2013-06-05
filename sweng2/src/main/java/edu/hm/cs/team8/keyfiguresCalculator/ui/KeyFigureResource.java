@@ -18,27 +18,27 @@ import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.impl.KeyFiguresCalculatorImpl;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureResult;
 import edu.hm.cs.team8.keyfiguresCalculator.to.FilterTO;
+import edu.hm.cs.team8.timetrackingmangement.dao.TimeTrackingDAO;
 
 @Path("/keyfigure-calculator")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class KeyFigureResource {
 
-	private final Handle handle;
 
-	public KeyFigureResource(final Handle handle) {
-		this.handle = handle;
+	private IKeyFiguresCalculator calc;
 
+	public KeyFigureResource(IKeyFiguresCalculator calc) {
+		this.calc = calc;
+		// TODO Auto-generated constructor stub
 	}
 
 	@POST
 	public Set<KeyFigureResult> calculateOnylFigures(@Valid final Set<FilterTO> to) {
 
-		final IKeyFiguresCalculator calc = new KeyFiguresCalculatorImpl();
-
 		final Set<IFilter> filters = new HashSet<>();
 		for (final FilterTO fto : to) {
-			final IFilter filter = FilterFactory.makeFilter(fto.getName(), fto.getValue(), handle);
+			final IFilter filter = FilterFactory.makeFilter(fto.getName(), fto.getValue());
 
 			if (filter == null)
 				continue;
@@ -47,7 +47,7 @@ public class KeyFigureResource {
 
 		}
 
-		return calc.calculateFigures(handle, filters.toArray(new IFilter[0]));
+		return calc.calculateFigures(filters.toArray(new IFilter[0]));
 
 	}
 }

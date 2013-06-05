@@ -9,6 +9,9 @@ import edu.hm.cs.team8.filter.IFilter;
 import edu.hm.cs.team8.filter.impl.FilterFactory;
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.impl.KeyFiguresCalculatorImpl;
+import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
+import edu.hm.cs.team8.timetrackingmangement.dao.TimeTrackingDAO;
+import edu.hm.cs.team8.timetrackingmangement.impl.TimeTrackingManagmentImpl;
 
 public class Test {
 
@@ -20,14 +23,15 @@ public class Test {
 		final DBI dbi = new DBI("jdbc:hive://194.97.152.47:10000/default", "", "");
 		final Handle handle = dbi.open();
 
-		IKeyFiguresCalculator calc = new KeyFiguresCalculatorImpl();
-
-		final IFilter memberFilter = FilterFactory.makeFilter("MemberFilter", "Max Mustermann", handle);
-		final IFilter memberFilter2 = FilterFactory.makeFilter("BusinessareaFilter", "COMPANY", handle);
+		ITimeTrackingMangement mng = new TimeTrackingManagmentImpl(handle);
+		IKeyFiguresCalculator calc = new KeyFiguresCalculatorImpl(mng);
+		
+		final IFilter memberFilter = FilterFactory.makeFilter("MemberFilter", "Max Mustermann");
+		final IFilter memberFilter2 = FilterFactory.makeFilter("BusinessareaFilter", "COMPANY");
 		// final IFilter timeFilter = FilterFactory.makeFilter("Timefilter",
 		// "01-2012", handle);
 
-		print(calc.calculateFigures(handle, memberFilter, memberFilter2));
+		print(calc.calculateFigures(memberFilter, memberFilter2));
 
 	}
 

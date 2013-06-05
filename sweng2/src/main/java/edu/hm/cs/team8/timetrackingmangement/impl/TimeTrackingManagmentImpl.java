@@ -7,8 +7,15 @@ import edu.hm.cs.team8.timetrackingmangement.dao.TimeTrackingDAO;
 
 public class TimeTrackingManagmentImpl implements ITimeTrackingMangement {
 
+	private Handle handle;
+
+	public TimeTrackingManagmentImpl(Handle handle) {
+		this.handle = handle;
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
-	public TimeTrackingDAO getTimeTrackingDAO(Handle handle) {
+	public TimeTrackingDAO getTimeTrackingDAO() {
 		return new TimeTrackingDAO(handle);
 	}
 

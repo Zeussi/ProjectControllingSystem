@@ -7,23 +7,25 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
 import edu.hm.cs.team8.timetrackingmangement.dao.TimeTrackingDAO;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
+import edu.hm.cs.team8.timetrackingmangement.impl.TimeTrackingManagmentImpl;
 
 @Path("/time-trackings")
 @Produces(MediaType.APPLICATION_JSON)
 public class TimeTrackingResource {
 
-	private final TimeTrackingDAO timeTrackingDAO;
+	private ITimeTrackingMangement timeTracking;
 
-	public TimeTrackingResource(final TimeTrackingDAO timeTrackingDAO) {
-		this.timeTrackingDAO = timeTrackingDAO;
+	public TimeTrackingResource(final ITimeTrackingMangement timeTracking) {
+		this.timeTracking = timeTracking;
 
 	}
 
 	@GET
 	public Set<TimeTrackingEntry> getMasterData() {
-		return timeTrackingDAO.getTimeTrackings();
+		return timeTracking.getTimeTrackingDAO().getTimeTrackings();
 	}
 
 }

@@ -9,6 +9,7 @@ import com.yammer.dropwizard.config.Environment;
 import com.yammer.dropwizard.jdbi.DBIFactory;
 import com.yammer.dropwizard.views.ViewBundle;
 
+import edu.hm.cs.team8.keyfiguresCalculator.impl.KeyFiguresCalculatorImpl;
 import edu.hm.cs.team8.keyfiguresCalculator.ui.KeyFigureResource;
 import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
 import edu.hm.cs.team8.timetrackingmangement.impl.TimeTrackingManagmentImpl;
@@ -30,13 +31,12 @@ public class ProjectControllingService extends Service<ProjectControllingConfigu
 			throws ClassNotFoundException {
 
 		final DBI dbi = new DBIFactory().build(environment, configuration.getDatabaseConfiguration(), "hiveDB");
-
 		final Handle handle = dbi.open();
 
-		final ITimeTrackingMangement timeTracking = new TimeTrackingManagmentImpl();
-
-		environment.addResource(new TimeTrackingResource(timeTracking.getTimeTrackingDAO(handle)));
-		environment.addResource(new KeyFigureResource(handle));
+		final ITimeTrackingMangement management =  new TimeTrackingManagmentImpl(handle);
+		
+		environment.addResource(new TimeTrackingResource(management));
+		environment.addResource(new KeyFigureResource(new KeyFiguresCalculatorImpl(management)));
 
 	}
 

@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.skife.jdbi.v2.Handle;
-
 import edu.hm.cs.team8.filter.IFilter;
 import edu.hm.cs.team8.filter.impl.AndOrFilter;
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
@@ -16,11 +14,14 @@ import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.KeyFigures;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.PerformanceKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.WorkloadKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureResult;
+import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
+import edu.hm.cs.team8.timetrackingmangement.dao.TimeTrackingDAO;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
 
 public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 
 	private static final Map<KeyFigures, IKeyFigure> logic = new HashMap<>();
+	private ITimeTrackingMangement timeTracking;
 
 	static {
 		logic.put(KeyFigures.PERFORMANCE, new PerformanceKeyFigure());
@@ -28,15 +29,20 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 		logic.put(KeyFigures.WORKLOAD, new WorkloadKeyFigure());
 	}
 
+	public KeyFiguresCalculatorImpl(ITimeTrackingMangement timeTracking) {
+		this.timeTracking = timeTracking;
+	}
+
 	@Override
-	public Set<KeyFigureResult> calculateFigures(Handle handle, IFilter... filters) {
+	public Set<KeyFigureResult> calculateFigures(IFilter... filters) {
 
 		final Set<KeyFigureResult> result = new HashSet<>();
 
-		final Set<TimeTrackingEntry> andAndOr = new AndOrFilter(handle, filters).apply();
+		final Set<TimeTrackingEntry> andAndOr = new AndOrFilter(filters).apply(timeTracking.getTimeTrackingDAO()
+				.getTimeTrackings());
 
 		for (Map.Entry<KeyFigures, IKeyFigure> entry : logic.entrySet()) {
-			KeyFigureResult value = entry.getValue().calculate(entry.getKey(), handle, andAndOr);
+			KeyFigureResult value = entry.getValue().calculate(entry.getKey(), andAndOr);
 			result.add(value);
 		}
 

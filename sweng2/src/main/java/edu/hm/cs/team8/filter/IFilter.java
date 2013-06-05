@@ -6,6 +6,6 @@ import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
 
 public interface IFilter {
 
-	Set<TimeTrackingEntry> apply();
+	Set<TimeTrackingEntry> apply(final Set<TimeTrackingEntry> entries);
 
 }
