@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Set;
 
 import edu.hm.cs.team8.filter.IFilter;
-import edu.hm.cs.team8.filter.impl.AndOrFilter;
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.BillablePerformanceKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.IKeyFigure;
@@ -37,8 +36,7 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 
 		final Set<KeyFigureResult> result = new HashSet<>();
 
-		final Set<TimeTrackingEntry> andAndOr = new AndOrFilter(filters).apply(timeTracking.getTimeTrackingDAO()
-				.getTimeTrackings());
+		final Set<TimeTrackingEntry> andAndOr = and(or(filters, timeTracking.getTimeTrackingDAO().getTimeTrackings()));
 
 		for (Map.Entry<KeyFigures, IKeyFigure> entry : logic.entrySet()) {
 			KeyFigureResult value = entry.getValue().calculate(entry.getKey(), andAndOr);
@@ -46,6 +44,52 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 		}
 
 		return result;
+	}
+
+	private Set<TimeTrackingEntry> and(final Set<Set<TimeTrackingEntry>> ord) {
+
+		final Set<TimeTrackingEntry> result = new HashSet<>();
+
+		for (Set<TimeTrackingEntry> entry : ord) {
+			boolean add = true;
+
+			for (TimeTrackingEntry tEntry : entry) {
+				for (Set<TimeTrackingEntry> others : ord) {
+					if (!others.contains(tEntry))
+						add = false;
+				}
+
+				if (add)
+					result.add(tEntry);
+
+			}
+		}
+		return result;
+	}
+
+	private Set<Set<TimeTrackingEntry>> or(IFilter[] filters, Set<TimeTrackingEntry> entries) {
+
+		final Map<Class<? extends IFilter>, Set<TimeTrackingEntry>> ord = new HashMap<>();
+
+		for (final IFilter filter : filters) {
+
+			Set<TimeTrackingEntry> f = ord.get(filter.getClass());
+			if (f == null)
+				f = new HashSet<>();
+
+			f.addAll(filter.apply(entries));
+			ord.put(filter.getClass(), f);
+
+		}
+
+		final Set<Set<TimeTrackingEntry>> result = new HashSet<>();
+
+		for (Map.Entry<Class<? extends IFilter>, Set<TimeTrackingEntry>> entry : ord.entrySet()) {
+			result.add(entry.getValue());
+		}
+
+		return result;
+
 	}
 
 }

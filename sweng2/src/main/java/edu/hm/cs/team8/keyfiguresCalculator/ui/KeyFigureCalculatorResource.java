@@ -10,8 +10,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import edu.hm.cs.team8.filter.FilterFactory;
 import edu.hm.cs.team8.filter.IFilter;
-import edu.hm.cs.team8.filter.impl.FilterFactory;
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureResult;
 import edu.hm.cs.team8.keyfiguresCalculator.to.FilterTO;

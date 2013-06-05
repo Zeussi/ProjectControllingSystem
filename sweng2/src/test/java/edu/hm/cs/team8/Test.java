@@ -5,8 +5,8 @@ import java.util.Set;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 
+import edu.hm.cs.team8.filter.FilterFactory;
 import edu.hm.cs.team8.filter.IFilter;
-import edu.hm.cs.team8.filter.impl.FilterFactory;
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.impl.KeyFiguresCalculatorImpl;
 import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;

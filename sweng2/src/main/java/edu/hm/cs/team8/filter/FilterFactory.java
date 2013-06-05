@@ -1,6 +1,5 @@
-package edu.hm.cs.team8.filter.impl;
+package edu.hm.cs.team8.filter;
 
-import edu.hm.cs.team8.filter.IFilter;
 import edu.hm.cs.team8.filter.impl.memberfilter.MemberFilter;
 import edu.hm.cs.team8.filter.impl.organisationfilter.BusinessAreaFilter;
 import edu.hm.cs.team8.filter.impl.timefilter.TimeFilter;
