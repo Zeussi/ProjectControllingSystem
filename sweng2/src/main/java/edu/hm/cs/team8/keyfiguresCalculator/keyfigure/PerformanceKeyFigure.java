@@ -4,8 +4,6 @@ import java.util.Set;
 
 import org.skife.jdbi.v2.Handle;
 
-import edu.hm.cs.team8.filter.IFilter;
-import edu.hm.cs.team8.filter.impl.AndFilter;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureMeasure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureResult;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
@@ -13,9 +11,7 @@ import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
 public class PerformanceKeyFigure implements IKeyFigure {
 
 	@Override
-	public KeyFigureResult calculate(KeyFigures keyfigure, Handle handle, final IFilter... filters) {
-
-		final Set<TimeTrackingEntry> timeTrackings = new AndFilter(handle, filters).apply();
+	public KeyFigureResult calculate(KeyFigures keyfigure, Handle handle, final Set<TimeTrackingEntry> timeTrackings) {
 
 		double sum = 0;
 

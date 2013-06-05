@@ -22,11 +22,12 @@ public class Test {
 
 		IKeyFiguresCalculator calc = new KeyFiguresCalculatorImpl();
 
-		final IFilter memberFilter = FilterFactory.makeFilter("Memberfilter", "Johann Mayer", handle);
+		final IFilter memberFilter = FilterFactory.makeFilter("MemberFilter", "Max Mustermann", handle);
+		final IFilter memberFilter2 = FilterFactory.makeFilter("BusinessareaFilter", "COMPANY", handle);
 		// final IFilter timeFilter = FilterFactory.makeFilter("Timefilter",
 		// "01-2012", handle);
 
-		print(calc.calculateFigures(handle, memberFilter));
+		print(calc.calculateFigures(handle, memberFilter, memberFilter2));
 
 	}
 

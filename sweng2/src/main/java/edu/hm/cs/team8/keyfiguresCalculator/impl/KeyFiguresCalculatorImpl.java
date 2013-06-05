@@ -8,6 +8,7 @@ import java.util.Set;
 import org.skife.jdbi.v2.Handle;
 
 import edu.hm.cs.team8.filter.IFilter;
+import edu.hm.cs.team8.filter.impl.AndOrFilter;
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.BillablePerformanceKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.IKeyFigure;
@@ -15,6 +16,7 @@ import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.KeyFigures;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.PerformanceKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.WorkloadKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureResult;
+import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
 
 public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 
@@ -27,16 +29,18 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 	}
 
 	@Override
-	public Set<KeyFigureResult> calculateFigures(Handle handle, final IFilter... filters) {
+	public Set<KeyFigureResult> calculateFigures(Handle handle, IFilter... filters) {
 
 		final Set<KeyFigureResult> result = new HashSet<>();
 
-		for (Map.Entry<KeyFigures, IKeyFigure> entry : logic.entrySet()) {
-			KeyFigureResult value = entry.getValue().calculate(entry.getKey(), handle, filters);
+		final Set<TimeTrackingEntry> andAndOr = new AndOrFilter(handle, filters).apply();
 
+		for (Map.Entry<KeyFigures, IKeyFigure> entry : logic.entrySet()) {
+			KeyFigureResult value = entry.getValue().calculate(entry.getKey(), handle, andAndOr);
 			result.add(value);
 		}
 
 		return result;
 	}
+
 }

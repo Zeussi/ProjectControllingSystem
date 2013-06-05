@@ -1,8 +1,6 @@
 package edu.hm.cs.team8.keyfiguresCalculator.ui;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import javax.validation.Valid;
@@ -16,7 +14,6 @@ import org.skife.jdbi.v2.Handle;
 
 import edu.hm.cs.team8.filter.IFilter;
 import edu.hm.cs.team8.filter.impl.FilterFactory;
-import edu.hm.cs.team8.filter.impl.mockfilter.MockFilter;
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.impl.KeyFiguresCalculatorImpl;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureResult;
@@ -39,25 +36,18 @@ public class KeyFigureResource {
 
 		final IKeyFiguresCalculator calc = new KeyFiguresCalculatorImpl();
 
-		final Map<Class<? extends IFilter>, Set<IFilter>> filters = new HashMap<>();
-
+		final Set<IFilter> filters = new HashSet<>();
 		for (final FilterTO fto : to) {
 			final IFilter filter = FilterFactory.makeFilter(fto.getName(), fto.getValue(), handle);
 
 			if (filter == null)
 				continue;
 
-			Set<IFilter> f = filters.get(filter.getClass());
-			if (f == null)
-				f = new HashSet<>();
-
-			f.add(filter);
-			filters.put(filter.getClass(), f);
+			filters.add(filter);
 
 		}
 
-		// TODO Echter Filter
-		return calc.calculateFigures(handle, new MockFilter(handle));
+		return calc.calculateFigures(handle, filters.toArray(new IFilter[0]));
 
 	}
 }
