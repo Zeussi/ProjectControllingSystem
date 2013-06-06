@@ -13,8 +13,8 @@ import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
 
 public class TimeTrackingDAO {
 
-	private final Set<TimeTrackingEntry> timeTrackings = new HashSet<>();
 	private final Handle handle;
+	private final Set<TimeTrackingEntry> timeTrackings = new HashSet<>();
 
 	public TimeTrackingDAO(final Handle handle) {
 
@@ -37,19 +37,6 @@ public class TimeTrackingDAO {
 		}
 	}
 
-	public Set<TimeTrackingEntry> findTimeTrackingsByMember(final long id) {
-
-		final Member member = new MemberDAO(handle).findMemberByID(id);
-
-		final Set<TimeTrackingEntry> result = new HashSet<>();
-
-		for (TimeTrackingEntry timetracking : timeTrackings)
-			if (timetracking.getMember().equals(member))
-				result.add(timetracking);
-
-		return result;
-	}
-
 	public Set<TimeTrackingEntry> findTimeTrackingsByAccount(final String accountName) {
 
 		final Account account = new AccountDAO(handle).findAccountByName(accountName);
@@ -63,6 +50,19 @@ public class TimeTrackingDAO {
 			if (account.equals(accountTimeTracking))
 				result.add(timetracking);
 		}
+
+		return result;
+	}
+
+	public Set<TimeTrackingEntry> findTimeTrackingsByMember(final long id) {
+
+		final Member member = new MemberDAO(handle).findMemberByID(id);
+
+		final Set<TimeTrackingEntry> result = new HashSet<>();
+
+		for (TimeTrackingEntry timetracking : timeTrackings)
+			if (timetracking.getMember().equals(member))
+				result.add(timetracking);
 
 		return result;
 	}

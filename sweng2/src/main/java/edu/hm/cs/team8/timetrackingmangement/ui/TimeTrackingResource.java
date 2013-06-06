@@ -1,5 +1,6 @@
 package edu.hm.cs.team8.timetrackingmangement.ui;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.ws.rs.GET;
@@ -7,6 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import edu.hm.cs.team8.keyfiguresCalculator.to.TimeTrackingTO;
 import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
 
@@ -22,8 +24,18 @@ public class TimeTrackingResource {
 	}
 
 	@GET
-	public Set<TimeTrackingEntry> getMasterData() {
-		return timeTracking.getTimeTrackings();
+	public Set<TimeTrackingTO> getMasterData() {
+		return parse(timeTracking.getTimeTrackings());
+	}
+
+	private Set<TimeTrackingTO> parse(Set<TimeTrackingEntry> timeTrackings) {
+
+		final Set<TimeTrackingTO> result = new HashSet<>();
+
+		for (TimeTrackingEntry timeTracking : timeTrackings)
+			result.add(new TimeTrackingTO(timeTracking));
+
+		return result;
 	}
 
 }

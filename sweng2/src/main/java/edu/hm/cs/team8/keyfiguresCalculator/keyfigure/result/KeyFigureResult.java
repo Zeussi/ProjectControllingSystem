@@ -4,27 +4,27 @@ import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.KeyFigures;
 
 public class KeyFigureResult {
 
-	private final Object value;
+	private final KeyFigures keyFigureName;
 	private final KeyFigureMeasure measure;
-	private final KeyFigures key;
+	private final Object value;
 
 	public KeyFigureResult(final KeyFigures key, final KeyFigureMeasure measure, final Object value) {
-		this.key = key;
+		this.keyFigureName = key;
 		this.measure = measure;
 		this.value = value;
 
 	}
 
-	public Object getValue() {
-		return value;
+	public KeyFigures getKey() {
+		return keyFigureName;
 	}
 
 	public KeyFigureMeasure getMeasure() {
 		return measure;
 	}
 
-	public KeyFigures getKey() {
-		return key;
+	public Object getValue() {
+		return value;
 	}
 
 	@Override

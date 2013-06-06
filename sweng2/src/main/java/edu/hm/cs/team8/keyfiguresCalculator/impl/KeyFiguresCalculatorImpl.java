@@ -19,31 +19,16 @@ import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
 public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 
 	private static final Map<KeyFigures, IKeyFigure> logic = new HashMap<>();
-	private ITimeTrackingMangement timeTracking;
-
 	static {
 		logic.put(KeyFigures.PERFORMANCE, new PerformanceKeyFigure());
 		logic.put(KeyFigures.BILLABLE_PERFORMANCE, new BillablePerformanceKeyFigure());
 		logic.put(KeyFigures.WORKLOAD, new WorkloadKeyFigure());
 	}
 
+	private final ITimeTrackingMangement timeTracking;
+
 	public KeyFiguresCalculatorImpl(ITimeTrackingMangement timeTracking) {
 		this.timeTracking = timeTracking;
-	}
-
-	@Override
-	public Set<KeyFigureResult> calculateFigures(IFilter... filters) {
-
-		final Set<KeyFigureResult> result = new HashSet<>();
-
-		final Set<TimeTrackingEntry> andAndOr = and(or(filters, timeTracking.getTimeTrackings()));
-
-		for (Map.Entry<KeyFigures, IKeyFigure> entry : logic.entrySet()) {
-			KeyFigureResult value = entry.getValue().calculate(entry.getKey(), andAndOr);
-			result.add(value);
-		}
-
-		return result;
 	}
 
 	private Set<TimeTrackingEntry> and(final Set<Set<TimeTrackingEntry>> ord) {
@@ -64,6 +49,21 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 
 			}
 		}
+		return result;
+	}
+
+	@Override
+	public Set<KeyFigureResult> calculateOnlyFigures(IFilter... filters) {
+
+		final Set<KeyFigureResult> result = new HashSet<>();
+
+		final Set<TimeTrackingEntry> andAndOr = and(or(filters, timeTracking.getTimeTrackings()));
+
+		for (Map.Entry<KeyFigures, IKeyFigure> entry : logic.entrySet()) {
+			KeyFigureResult value = entry.getValue().calculate(entry.getKey(), andAndOr);
+			result.add(value);
+		}
+
 		return result;
 	}
 
@@ -90,6 +90,12 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 
 		return result;
 
+	}
+
+	@Override
+	public Set<KeyFigureResult> calculateTimeBehaviourFigures(IFilter... filters) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

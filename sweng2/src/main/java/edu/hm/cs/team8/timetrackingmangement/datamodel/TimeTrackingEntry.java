@@ -4,19 +4,19 @@ public class TimeTrackingEntry {
 
 	private final Account account;
 
-	private final Member member;
-
-	private final double workedHours;
-
 	private final boolean billable;
-
-	/** Grenzkosten. */
-	private final double incrementalCosts;
 
 	/** Verrechnungssatz. */
 	private final double costRate;
 
+	/** Grenzkosten. */
+	private final double incrementalCosts;
+
+	private final Member member;
+
 	private int month;
+
+	private final double workedHours;
 
 	private int year;
 
@@ -33,10 +33,6 @@ public class TimeTrackingEntry {
 		this.setYear(year);
 	}
 
-	public Account getAccount() {
-		return account;
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 
@@ -49,32 +45,32 @@ public class TimeTrackingEntry {
 
 	}
 
-	@Override
-	public String toString() {
-		return String
-				.format("Account: %s%nM-ID: %s%nWorkedHours: %f%nBillable: %b%nDifferential Costs: %f%nCost Rate: %f%nDate: %d-%d",
-						getAccount(), getMember().getmId(), getWorkedHours(), isBillable(), getIncrementalCosts(),
-						getCostRate(), getMonth(), getYear());
-	}
-
-	public double getWorkedHours() {
-		return workedHours;
-	}
-
-	public boolean isBillable() {
-		return billable;
-	}
-
-	public double getIncrementalCosts() {
-		return incrementalCosts;
+	public Account getAccount() {
+		return account;
 	}
 
 	public double getCostRate() {
 		return costRate;
 	}
 
+	public double getIncrementalCosts() {
+		return incrementalCosts;
+	}
+
 	public Member getMember() {
 		return member;
+	}
+
+	public int getMonth() {
+		return month;
+	}
+
+	public double getWorkedHours() {
+		return workedHours;
+	}
+
+	public int getYear() {
+		return year;
 	}
 
 	@Override
@@ -82,19 +78,23 @@ public class TimeTrackingEntry {
 		return (int) (costRate + incrementalCosts + member.getLevel() + member.getmId());
 	}
 
-	public int getMonth() {
-		return month;
+	public boolean isBillable() {
+		return billable;
 	}
 
 	public void setMonth(int month) {
 		this.month = month;
 	}
 
-	public int getYear() {
-		return year;
-	}
-
 	public void setYear(int year) {
 		this.year = year;
+	}
+
+	@Override
+	public String toString() {
+		return String
+				.format("Account: %s%nM-ID: %s%nWorkedHours: %f%nBillable: %b%nDifferential Costs: %f%nCost Rate: %f%nDate: %d-%d",
+						getAccount(), getMember().getmId(), getWorkedHours(), isBillable(), getIncrementalCosts(),
+						getCostRate(), getMonth(), getYear());
 	}
 }

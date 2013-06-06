@@ -24,13 +24,13 @@ public class Test {
 
 		ITimeTrackingMangement mng = new TimeTrackingManagmentImpl(handle);
 		IKeyFiguresCalculator calc = new KeyFiguresCalculatorImpl(mng);
-		
+
 		final IFilter memberFilter = FilterFactory.makeFilter("MemberFilter", "Max Mustermann");
 		final IFilter memberFilter2 = FilterFactory.makeFilter("BusinessareaFilter", "COMPANY");
 		// final IFilter timeFilter = FilterFactory.makeFilter("Timefilter",
 		// "01-2012", handle);
 
-		print(calc.calculateFigures(memberFilter, memberFilter2));
+		print(calc.calculateOnlyFigures(memberFilter, memberFilter2));
 
 	}
 

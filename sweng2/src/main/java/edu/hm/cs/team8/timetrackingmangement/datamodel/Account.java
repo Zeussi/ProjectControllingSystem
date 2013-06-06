@@ -12,14 +12,6 @@ public class Account {
 
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public Project getProject() {
-		return project;
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null || obj.getClass() != getClass())
@@ -28,6 +20,14 @@ public class Account {
 		final Account that = (Account) obj;
 
 		return that.getName().equals(getName()) && that.getProject().equals(getProject());
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Project getProject() {
+		return project;
 	}
 
 	@Override

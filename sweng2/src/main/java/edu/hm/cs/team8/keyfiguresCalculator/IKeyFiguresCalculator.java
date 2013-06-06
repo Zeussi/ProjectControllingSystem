@@ -7,5 +7,7 @@ import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureResult;
 
 public interface IKeyFiguresCalculator {
 
-	Set<KeyFigureResult> calculateFigures(IFilter... filters);
+	Set<KeyFigureResult> calculateOnlyFigures(IFilter... filters);
+	
+	Set<KeyFigureResult> calculateTimeBehaviourFigures(IFilter... filters);
 }

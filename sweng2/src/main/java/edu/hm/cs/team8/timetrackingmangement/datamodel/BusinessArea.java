@@ -8,15 +8,6 @@ public class BusinessArea {
 		this.name = name;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public String toString() {
-		return String.format("Business Area Name: %s", name);
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null || obj.getClass() != getClass())
@@ -27,9 +18,18 @@ public class BusinessArea {
 		return that.getName().equals(getName());
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	@Override
 	public int hashCode() {
 		return name.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Business Area Name: %s", name);
 	}
 
 }

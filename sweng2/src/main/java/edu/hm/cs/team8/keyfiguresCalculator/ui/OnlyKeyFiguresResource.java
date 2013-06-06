@@ -13,21 +13,21 @@ import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureResult;
 import edu.hm.cs.team8.keyfiguresCalculator.to.FilterTO;
 
-@Path("/keyfigure-calculator")
+@Path("/only-keyfigures")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class SimpleKeyFigureCalculatorResource {
+public class OnlyKeyFiguresResource {
 
 	private IKeyFiguresCalculator calc;
 
-	public SimpleKeyFigureCalculatorResource(IKeyFiguresCalculator calc) {
+	public OnlyKeyFiguresResource(IKeyFiguresCalculator calc) {
 		this.calc = calc;
 	}
 
 	@POST
 	public Set<KeyFigureResult> calculateOnylFigures(@Valid final Set<FilterTO> to) {
 
-		return calc.calculateFigures(FilterParser.parse(to));
+		return calc.calculateOnlyFigures(FilterParser.parse(to));
 
 	}
 }
