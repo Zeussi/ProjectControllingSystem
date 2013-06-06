@@ -33,17 +33,6 @@ public class TimeTrackingEntry {
 		this.setYear(year);
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-
-		if (obj == null || obj.getClass() != getClass())
-			return false;
-
-		final TimeTrackingEntry that = (TimeTrackingEntry) obj;
-
-		return that.getAccount().equals(getAccount()) && that.getMember().equals(getMember());
-
-	}
 
 	public Account getAccount() {
 		return account;
@@ -73,10 +62,6 @@ public class TimeTrackingEntry {
 		return year;
 	}
 
-	@Override
-	public int hashCode() {
-		return (int) (costRate + incrementalCosts + member.getLevel() + member.getmId());
-	}
 
 	public boolean isBillable() {
 		return billable;
@@ -96,5 +81,60 @@ public class TimeTrackingEntry {
 				.format("Account: %s%nM-ID: %s%nWorkedHours: %f%nBillable: %b%nDifferential Costs: %f%nCost Rate: %f%nDate: %d-%d",
 						getAccount(), getMember().getmId(), getWorkedHours(), isBillable(), getIncrementalCosts(),
 						getCostRate(), getMonth(), getYear());
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((account == null) ? 0 : account.hashCode());
+		result = prime * result + (billable ? 1231 : 1237);
+		long temp;
+		temp = Double.doubleToLongBits(costRate);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(incrementalCosts);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((member == null) ? 0 : member.hashCode());
+		result = prime * result + month;
+		temp = Double.doubleToLongBits(workedHours);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + year;
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TimeTrackingEntry other = (TimeTrackingEntry) obj;
+		if (account == null) {
+			if (other.account != null)
+				return false;
+		} else if (!account.equals(other.account))
+			return false;
+		if (billable != other.billable)
+			return false;
+		if (Double.doubleToLongBits(costRate) != Double.doubleToLongBits(other.costRate))
+			return false;
+		if (Double.doubleToLongBits(incrementalCosts) != Double.doubleToLongBits(other.incrementalCosts))
+			return false;
+		if (member == null) {
+			if (other.member != null)
+				return false;
+		} else if (!member.equals(other.member))
+			return false;
+		if (month != other.month)
+			return false;
+		if (Double.doubleToLongBits(workedHours) != Double.doubleToLongBits(other.workedHours))
+			return false;
+		if (year != other.year)
+			return false;
+		return true;
 	}
 }
