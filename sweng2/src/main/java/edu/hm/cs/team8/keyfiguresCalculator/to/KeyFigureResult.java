@@ -1,4 +1,4 @@
-package edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result;
+package edu.hm.cs.team8.keyfiguresCalculator.to;
 
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.KeyFigures;
 

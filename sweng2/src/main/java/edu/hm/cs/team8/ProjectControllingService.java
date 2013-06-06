@@ -12,6 +12,7 @@ import com.yammer.dropwizard.views.ViewBundle;
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.KeyFiguresCalculatorFactory;
 import edu.hm.cs.team8.keyfiguresCalculator.ui.OnlyKeyFiguresResource;
+import edu.hm.cs.team8.keyfiguresCalculator.ui.TimeBehaviourKeyFiguresResource;
 import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
 import edu.hm.cs.team8.timetrackingmangement.TimeTrackingManagementFactory;
 import edu.hm.cs.team8.timetrackingmangement.ui.TimeTrackingResource;
@@ -39,6 +40,7 @@ public class ProjectControllingService extends Service<ProjectControllingConfigu
 
 		environment.addResource(new TimeTrackingResource(management));
 		environment.addResource(new OnlyKeyFiguresResource(calc));
+		environment.addResource(new TimeBehaviourKeyFiguresResource(calc));
 
 	}
 

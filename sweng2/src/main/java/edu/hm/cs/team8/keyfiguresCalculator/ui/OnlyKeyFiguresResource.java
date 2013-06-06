@@ -10,8 +10,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
-import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureResult;
 import edu.hm.cs.team8.keyfiguresCalculator.to.FilterTO;
+import edu.hm.cs.team8.keyfiguresCalculator.to.KeyFigureResult;
 
 @Path("/only-keyfigures")
 @Produces(MediaType.APPLICATION_JSON)

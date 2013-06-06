@@ -10,7 +10,7 @@ public class TestPOST {
 
 	public static void main(String[] args) throws Exception {
 
-		HttpURLConnection conn = (HttpURLConnection) new URL("http://localhost:8080/only-keyfigures")
+		HttpURLConnection conn = (HttpURLConnection) new URL("http://localhost:8080/time-behaviour-keyfiugres")
 				.openConnection();
 		conn.setRequestMethod("POST");
 		conn.setDoOutput(true);

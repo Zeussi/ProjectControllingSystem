@@ -12,7 +12,8 @@ import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.IKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.KeyFigures;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.PerformanceKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.WorkloadKeyFigure;
-import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.result.KeyFigureResult;
+import edu.hm.cs.team8.keyfiguresCalculator.to.KeyFigureResult;
+import edu.hm.cs.team8.keyfiguresCalculator.to.TimeBehaviourKeyFigureResult;
 import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
 
@@ -55,13 +56,45 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 	@Override
 	public Set<KeyFigureResult> calculateOnlyFigures(IFilter... filters) {
 
-		final Set<KeyFigureResult> result = new HashSet<>();
-
 		final Set<TimeTrackingEntry> andAndOr = and(or(filters, timeTracking.getTimeTrackings()));
 
+		return calculateFigures(andAndOr);
+	}
+
+	private Set<KeyFigureResult> calculateFigures(Set<TimeTrackingEntry> entries) {
+		final Set<KeyFigureResult> result = new HashSet<>();
+
 		for (Map.Entry<KeyFigures, IKeyFigure> entry : logic.entrySet()) {
-			KeyFigureResult value = entry.getValue().calculate(entry.getKey(), andAndOr);
+			KeyFigureResult value = entry.getValue().calculate(entry.getKey(), entries);
 			result.add(value);
+		}
+
+		return result;
+
+	}
+
+	@Override
+	public Set<TimeBehaviourKeyFigureResult> calculateTimeBehaviourFigures(IFilter... filters) {
+
+		final Map<String, Set<TimeTrackingEntry>> fiteredData = new HashMap<>();
+
+		final Set<TimeTrackingEntry> entries = and(or(filters, timeTracking.getTimeTrackings()));
+
+		for (TimeTrackingEntry entry : entries) {
+
+			Set<TimeTrackingEntry> temp = fiteredData.get(entry.getMonth() + "-" + entry.getYear());
+			if (temp == null)
+				temp = new HashSet<>();
+
+			temp.add(entry);
+
+			fiteredData.put(entry.getMonth() + "-" + entry.getYear(), temp);
+		}
+
+		final Set<TimeBehaviourKeyFigureResult> result = new HashSet<>();
+
+		for (Map.Entry<String, Set<TimeTrackingEntry>> entry : fiteredData.entrySet()) {
+			result.add(new TimeBehaviourKeyFigureResult(entry.getKey(), calculateFigures(entry.getValue())));
 		}
 
 		return result;
@@ -90,12 +123,6 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 
 		return result;
 
-	}
-
-	@Override
-	public Set<KeyFigureResult> calculateTimeBehaviourFigures(IFilter... filters) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
