@@ -1,0 +1,182 @@
+body, html
+{
+    height:100%;
+    width: 100%;
+}
+
+header
+{
+    background-color: #82ba00;
+    padding: 0px 20px 10px 5px;
+    text-align: right;
+    height: 42px;
+}
+
+@font-face
+{
+    font-family: PCMLogo;
+    src: url('fonts/ZagBold.otf');
+    font-style: normal;
+    font-weight: bold;
+}
+
+aside nav a
+{
+    text-decoration: none;
+    color: black;
+}
+
+#import:hover
+{
+    background-color: gray;
+    color: white;
+    border: 1px solid gray;
+}
+
+#import
+{
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    clear: both;
+    background-color: #6a9900;
+    border: 1px solid #6a9900;
+}
+
+#logo
+{
+    float: left;
+    padding-left: 5px;
+    font-weight: bold;
+    font-family: PCMLogo;
+    font-size: 24px;
+    vertical-align: bottom;
+}
+
+#logo img
+{
+    vertical-align: middle;
+    padding-bottom: 6px;
+}
+
+#logo a
+{
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 10px;
+}
+
+#logo a:hover
+{
+    background-color: #6a9900;
+}
+
+.icon-upload
+{
+    background-image: url(../img/blackwhite/56-cloud-white.png);
+}
+
+.icon-upload-black
+{
+    background-image: url(../img/blackwhite/56-cloud.png);
+}
+
+.icon-upload, .icon-upload-black
+{
+    width: 24px;
+    height: 16px;
+    display: block;
+    float: left;
+    margin-top: 6px;
+    margin-right: 10px;
+}
+
+aside
+{
+
+}
+
+#navigation ul
+{
+    margin: 0;
+    padding: 0;
+    padding-top: 27px;
+}
+
+#navigation li
+{
+
+}
+
+.navigation-selected
+{
+    background-color: #d4d4d4;
+    font-weight: bold;
+}
+
+.navigation-header
+{
+    font-family: PCMLogo;
+    font-weight: bold;
+    font-size: 22px !important;
+}
+
+#navigation a
+{
+    padding: 10px;
+    padding-left: 20px;
+    display: block;
+    font-size: 13px;
+}
+
+#navigation a:hover
+{
+    background-color: #e5e5e5;
+
+}
+
+.navigation-header:hover
+{
+    background-color: transparent !important;
+    cursor: default;
+
+}
+
+#vertical {
+    height: auto;
+    min-height: 100%;
+}
+
+#wrapper {
+    position: absolute;
+    bottom: 0px;
+    top: 52px;
+    left: 0px;
+    right: 0px;
+    border: 0;
+    overflow: hidden;
+}
+
+#wrapper-content {
+    padding-right: 20px;
+}
+
+#left-pane, #center-pane, #right-pane  { background-color: rgba(60, 70, 80, 0.05); border: 0; }
+
+
+#left-pane {
+    background-color: #f3f3f3;
+}
+
+#right-pane
+{
+    background-color: white;
+}
+
+#grid
+{
+    height: 100%;
+    position: absolute;
+    border: 0;
+}
