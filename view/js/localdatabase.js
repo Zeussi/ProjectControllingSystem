@@ -130,8 +130,29 @@ function displayChartsHandler(transaction, results)
         }
         // convert JS object to JSON string by json2.js plugin
         data = JSON.stringify(data);
+        createPostForDisplay(data);
         console.log(data);
     }
+}
+
+function createPostForDisplay(jsonData)
+{
+    var form, inputForJSON;
+    // Start by creating a <form>
+    form = document.createElement('form');
+    form.action = 'diagramme.html';
+    form.method = 'post';
+    // Next create the <input>s in the form and give them names and values
+    inputForJSON = document.createElement('input');
+    inputForJSON.type = 'hidden';
+    inputForJSON.name = 'json';
+    inputForJSON.value = jsonData;
+    // Now put everything together...
+    form.appendChild(inputForJSON);
+    // ...and it to the DOM...
+    document.getElementById('json-form-container').appendChild(form);
+    // ...and submit it
+    form.submit();
 }
 
 function dataSelectHandler(transaction, results)
