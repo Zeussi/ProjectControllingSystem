@@ -5,10 +5,9 @@ import java.util.Set;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 
-import edu.hm.cs.team8.filter.FilterFactory;
-import edu.hm.cs.team8.filter.IFilter;
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.impl.KeyFiguresCalculatorImpl;
+import edu.hm.cs.team8.keyfiguresCalculator.to.FilterTO;
 import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
 import edu.hm.cs.team8.timetrackingmangement.impl.TimeTrackingManagmentImpl;
 
@@ -25,8 +24,8 @@ public class Test {
 		ITimeTrackingMangement mng = new TimeTrackingManagmentImpl(handle);
 		IKeyFiguresCalculator calc = new KeyFiguresCalculatorImpl(mng);
 
-		final IFilter memberFilter = FilterFactory.makeFilter("MemberFilter", "Max Mustermann");
-		final IFilter memberFilter2 = FilterFactory.makeFilter("BusinessareaFilter", "COMPANY");
+		final FilterTO memberFilter = new FilterTO("MemberFilter", "Max Mustermann");
+		final FilterTO memberFilter2 = new FilterTO("BusinessareaFilter", "COMPANY");
 		// final IFilter timeFilter = FilterFactory.makeFilter("Timefilter",
 		// "01-2012", handle);
 

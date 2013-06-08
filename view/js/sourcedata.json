@@ -1,8 +1,4 @@
-{
-    "id": 1,
-    "jsonrpc": "2.0",
-    "total": 50,
-    "result": [
+	[
         {
             "mid": 44685,
             "name": "Emma Creighton",
@@ -603,5 +599,4 @@
             "projectname": "et",
             "areaname": "iusto"
         }
-    ]
-}
+]
