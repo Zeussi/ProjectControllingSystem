@@ -27,7 +27,7 @@ public class OnlyKeyFiguresResource {
 	@POST
 	public Set<KeyFigureResult> calculateOnylFigures(@Valid final Set<FilterTO> to) {
 
-		return calc.calculateOnlyFigures(FilterParser.parse(to));
+		return calc.calculateOnlyFigures(to.toArray(new FilterTO[0]));
 
 	}
 }

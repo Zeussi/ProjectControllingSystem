@@ -12,6 +12,7 @@ import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.IKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.KeyFigures;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.PerformanceKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.WorkloadKeyFigure;
+import edu.hm.cs.team8.keyfiguresCalculator.to.FilterTO;
 import edu.hm.cs.team8.keyfiguresCalculator.to.KeyFigureResult;
 import edu.hm.cs.team8.keyfiguresCalculator.to.TimeBehaviourKeyFigureResult;
 import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
@@ -54,9 +55,9 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 	}
 
 	@Override
-	public Set<KeyFigureResult> calculateOnlyFigures(IFilter... filters) {
+	public Set<KeyFigureResult> calculateOnlyFigures(FilterTO... filters) {
 
-		final Set<TimeTrackingEntry> andAndOr = and(or(filters, timeTracking.getTimeTrackings()));
+		final Set<TimeTrackingEntry> andAndOr = and(or(FilterParser.parse(filters), timeTracking.getTimeTrackings()));
 
 		return calculateFigures(andAndOr);
 	}
@@ -74,11 +75,11 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 	}
 
 	@Override
-	public Set<TimeBehaviourKeyFigureResult> calculateTimeBehaviourFigures(IFilter... filters) {
+	public Set<TimeBehaviourKeyFigureResult> calculateTimeBehaviourFigures(FilterTO... filters) {
 
 		final Map<String, Set<TimeTrackingEntry>> fiteredData = new HashMap<>();
 
-		final Set<TimeTrackingEntry> entries = and(or(filters, timeTracking.getTimeTrackings()));
+		final Set<TimeTrackingEntry> entries = and(or(FilterParser.parse(filters), timeTracking.getTimeTrackings()));
 
 		for (TimeTrackingEntry entry : entries) {
 

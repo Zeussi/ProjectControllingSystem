@@ -13,7 +13,7 @@ import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.to.FilterTO;
 import edu.hm.cs.team8.keyfiguresCalculator.to.TimeBehaviourKeyFigureResult;
 
-@Path("/time-behaviour-keyfiugres")
+@Path("/time-behaviour-keyfigures")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class TimeBehaviourKeyFiguresResource {
@@ -27,7 +27,7 @@ public class TimeBehaviourKeyFiguresResource {
 	@POST
 	public Set<TimeBehaviourKeyFigureResult> calculateOnylFigures(@Valid final Set<FilterTO> to) {
 
-		return calc.calculateTimeBehaviourFigures(FilterParser.parse(to));
+		return calc.calculateTimeBehaviourFigures(to.toArray(new FilterTO[0]));
 
 	}
 }
