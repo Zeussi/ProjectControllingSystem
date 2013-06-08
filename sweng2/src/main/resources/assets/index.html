@@ -128,7 +128,7 @@
         <script src="js/main.js"></script>
 
         <script>
-            $.getJSON( "js/sourcedata.json", function(jsonFilterData) {
+            $.getJSON( "/service/time-trackings", function(jsonFilterData) {
                 setTableContent(jsonFilterData);
             });
             function setTableContent(jsonSourceData)

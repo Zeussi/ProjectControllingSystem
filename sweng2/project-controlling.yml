@@ -10,3 +10,7 @@ database:
 
   # the JDBC URL
   url: jdbc:hive://194.97.152.47:10000/default
+  
+http:
+  # Default is /*
+  rootPath: /service/*  
