@@ -3,6 +3,7 @@ package edu.hm.cs.team8;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 
+import com.bazaarvoice.dropwizard.assets.ConfiguredAssetsBundle;
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.assets.AssetsBundle;
 import com.yammer.dropwizard.config.Bootstrap;
@@ -27,7 +28,15 @@ public class ProjectControllingService extends
 	public void initialize(Bootstrap<ProjectControllingConfiguration> bootstrap) {
 		bootstrap.setName("project-controlling-service");
 
-		bootstrap.addBundle(new AssetsBundle("/assets/", "/", "index.html"));
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//bootstrap.addBundle(new AssetsBundle("/assets/", "/", "index.html"));
+        bootstrap.addBundle(new ConfiguredAssetsBundle("/assets/", "/", "index.html"));
+
 
 	}
 

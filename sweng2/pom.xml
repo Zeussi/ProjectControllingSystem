@@ -69,6 +69,11 @@
             <artifactId>hadoop-core</artifactId>
             <version>0.20.2</version>
         </dependency>
+		<dependency>
+		  <groupId>com.bazaarvoice.dropwizard</groupId>
+		  <artifactId>dropwizard-configurable-assets-bundle</artifactId>
+		  <version>0.1.10</version>
+		</dependency>
     </dependencies>
     <build>
         <plugins>
