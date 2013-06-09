@@ -16,7 +16,7 @@ public class TestPOST {
 		conn.setDoOutput(true);
 		conn.setRequestProperty("Content-Type", "application/json");
 
-		final String json = "[]";
+		final String json = "[{\"name\": \"MemberFilter\", \"value\": \"Christina Pass\"}]";
 
 		final DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
 		wr.writeBytes(json);
