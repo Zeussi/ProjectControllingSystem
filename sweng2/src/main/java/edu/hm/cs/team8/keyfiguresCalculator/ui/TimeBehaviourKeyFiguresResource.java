@@ -10,8 +10,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
+import edu.hm.cs.team8.keyfiguresCalculator.to.DiagramResult;
 import edu.hm.cs.team8.keyfiguresCalculator.to.FilterTO;
-import edu.hm.cs.team8.keyfiguresCalculator.to.TimeBehaviourKeyFigureResult;
 
 @Path("/time-behaviour-keyfigures")
 @Produces(MediaType.APPLICATION_JSON)
@@ -25,9 +25,11 @@ public class TimeBehaviourKeyFiguresResource {
 	}
 
 	@POST
-	public Set<TimeBehaviourKeyFigureResult> calculateOnylFigures(@Valid final Set<FilterTO> to) {
+	public DiagramResult calculateOnylFiguresForPerformance(
+			@Valid final Set<FilterTO> to) {
 
-		return calc.calculateTimeBehaviourFigures(to.toArray(new FilterTO[0]));
+		return calc.calculateTimeBehaviourFiguresForPerformance(to
+				.toArray(new FilterTO[0]));
 
 	}
 }

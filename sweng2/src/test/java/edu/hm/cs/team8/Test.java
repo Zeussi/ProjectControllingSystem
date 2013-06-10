@@ -29,7 +29,7 @@ public class Test {
 		// final IFilter timeFilter = FilterFactory.makeFilter("Timefilter",
 		// "01-2012", handle);
 
-		print(calc.calculateOnlyFigures(memberFilter, memberFilter2));
+		//print(calc.calculateOnlyFigures(memberFilter, memberFilter2));
 
 	}
 

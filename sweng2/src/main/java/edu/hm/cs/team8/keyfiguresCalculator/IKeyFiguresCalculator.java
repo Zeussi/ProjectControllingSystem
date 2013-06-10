@@ -2,13 +2,13 @@ package edu.hm.cs.team8.keyfiguresCalculator;
 
 import java.util.Set;
 
+import edu.hm.cs.team8.keyfiguresCalculator.to.DiagramResult;
 import edu.hm.cs.team8.keyfiguresCalculator.to.FilterTO;
-import edu.hm.cs.team8.keyfiguresCalculator.to.KeyFigureResult;
-import edu.hm.cs.team8.keyfiguresCalculator.to.TimeBehaviourKeyFigureResult;
+import edu.hm.cs.team8.keyfiguresCalculator.to.KeyFigureTableEntry;
 
 public interface IKeyFiguresCalculator {
 
-	Set<KeyFigureResult> calculateOnlyFigures(FilterTO... filters);
+	Set<KeyFigureTableEntry> calculateOnlyFigures(FilterTO... filters);
 	
-	Set<TimeBehaviourKeyFigureResult> calculateTimeBehaviourFigures(FilterTO... filters);
+	DiagramResult calculateTimeBehaviourFiguresForPerformance(FilterTO... filters);
 }

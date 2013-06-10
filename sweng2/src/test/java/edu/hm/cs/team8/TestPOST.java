@@ -10,13 +10,13 @@ public class TestPOST {
 
 	public static void main(String[] args) throws Exception {
 
-		HttpURLConnection conn = (HttpURLConnection) new URL("http://localhost:8080/service/only-keyfigures")
+		HttpURLConnection conn = (HttpURLConnection) new URL("http://localhost:8080/service/time-behaviour-keyfigures")
 				.openConnection();
 		conn.setRequestMethod("POST");
 		conn.setDoOutput(true);
 		conn.setRequestProperty("Content-Type", "application/json");
 
-		final String json = "[{\"name\": \"MemberFilter\", \"value\": \"Christina Pass\"}]";
+		final String json = "[{\"name\": \"MemberFilter\"}, {\"value\": \"Christina Pass\"}]";
 		
 		final DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
 		wr.writeBytes(json);

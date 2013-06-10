@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.to.FilterTO;
-import edu.hm.cs.team8.keyfiguresCalculator.to.KeyFigureResult;
+import edu.hm.cs.team8.keyfiguresCalculator.to.KeyFigureTableEntry;
 
 @Path("/only-keyfigures")
 @Produces(MediaType.APPLICATION_JSON)
@@ -25,7 +25,7 @@ public class OnlyKeyFiguresResource {
 	}
 
 	@POST
-	public Set<KeyFigureResult> calculateOnylFigures(@Valid final Set<FilterTO> to) {
+	public Set<KeyFigureTableEntry> calculateOnylFigures(@Valid final Set<FilterTO> to) {
 
 		return calc.calculateOnlyFigures(to.toArray(new FilterTO[0]));
 
