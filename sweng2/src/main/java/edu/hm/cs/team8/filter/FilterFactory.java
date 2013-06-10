@@ -1,37 +1,23 @@
 package edu.hm.cs.team8.filter;
 
-import edu.hm.cs.team8.filter.impl.memberfilter.MemberFilter;
-import edu.hm.cs.team8.filter.impl.organisationfilter.AccountFilter;
-import edu.hm.cs.team8.filter.impl.organisationfilter.BusinessAreaFilter;
-import edu.hm.cs.team8.filter.impl.organisationfilter.ProjectFilter;
-import edu.hm.cs.team8.filter.impl.timefilter.TimeFilter;
+import java.lang.reflect.Constructor;
 
 public class FilterFactory {
 
 	public static IFilter makeFilter(String name, String value) {
 
-		final IFilter result;
+		final String className = FilterFactory.class.getPackage() + ".impl"
+				+ name;
+		IFilter result;
 
-		switch (name) {
-		case "MemberFilter":
-			result = new MemberFilter(value);
-			break;
+		try {
+			final Class<?> clasz = Class.forName(className);
 
-		case "AccountFilter":
-			result = new AccountFilter(value);
-			break;
-		case "BusinessareaFilter":
-			result = new BusinessAreaFilter(value);
-			break;
+			Constructor<?> cons = clasz.getConstructor(String.class);
 
-		case "ProjectFilter":
-			result = new ProjectFilter(value);
-			break;
+			result = (IFilter) cons.newInstance(value);
 
-		case "TimeFilter":
-			result = new TimeFilter(value);
-			break;
-		default:
+		} catch (ReflectiveOperationException e) {
 			result = null;
 		}
 		return result;

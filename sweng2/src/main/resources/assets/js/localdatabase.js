@@ -100,12 +100,18 @@ function displayFilterNames(data)
             click: function(e){
                 e.preventDefault();
                 var filtername = e.target.textContent;
-                displayChartsByFiltername(filtername);
+                //displayChartsByFiltername(filtername);
+                connectToChartsPage(encodeURIComponent(filtername));
             }});
         newDiv.appendTo('#kennzahlen');
 
         cssBgFlag = !cssBgFlag;
     }
+}
+
+function connectToChartsPage(filtername)
+{
+    window.location = "diagramme.html?filtername="+filtername;
 }
 
 function displayChartsByFiltername(filtername)
@@ -130,8 +136,10 @@ function displayChartsHandler(transaction, results)
         }
         // convert JS object to JSON string by json2.js plugin
         data = JSON.stringify(data);
-        createPostForDisplay(data);
-        console.log(data);
+        drawDiagrams(data);
+        //createPostForDisplay(data);
+        //console.log(data);
+
     }
 }
 

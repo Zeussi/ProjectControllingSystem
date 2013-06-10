@@ -22,7 +22,7 @@ $("#mitarbeiterfilter-submit").click(function (e) {
 
     // selected option value of the select / input value
     var mitarbeiterfilterType = $("#mitarbeiterfilter-type").val();
-    var mitarbeiterfilterSelector = $("#mitarbeiterfilter-selector").val();
+    var mitarbeiterfilterSelector = "ist gleich";//$("#mitarbeiterfilter-selector").val();
     var mitarbeiterfilterValue = $("#mitarbeiterfilter-value").val();
 
     $('#filter-table').data('kendoGrid').dataSource.add(
@@ -40,7 +40,7 @@ $("#bereichsfilter-submit").click(function (e) {
 
     // selected option value of the select / input value
     var bereichsfilterType = $("#bereichsfilter-type").val();
-    var bereichsfilterSelector = $("#bereichsfilter-selector").val();
+    var bereichsfilterSelector = "ist gleich";//$("#bereichsfilter-selector").val();
     var bereichsfilterValue = $("#bereichsfilter-value").val();
 
     $('#filter-table').data('kendoGrid').dataSource.add(
@@ -57,11 +57,11 @@ $("#zeitfilter-submit").click(function (e) {
 
     // selected option value of the select / input value
     var zeitfilterStart = $("#zeitfilter-start").val();
-    var zeitfilterEnd = $("#zeitfilter-end").val();
-    var zeitfilterSelector = "von / bis";
-    var zeitfilterValue = zeitfilterStart+' bis '+zeitfilterEnd;
+    /*var zeitfilterEnd = $("#zeitfilter-end").val();
+    var zeitfilterSelector = "von / bis";*/
+    var zeitfilterValue = zeitfilterStart;//+' bis '+zeitfilterEnd;
     var addData = true;
-    if(zeitfilterStart.length == 0 && zeitfilterEnd.length != 0)
+    /*if(zeitfilterStart.length == 0 && zeitfilterEnd.length != 0)
     {
         zeitfilterSelector = "bis";
         zeitfilterValue = zeitfilterEnd;
@@ -76,13 +76,13 @@ $("#zeitfilter-submit").click(function (e) {
     {
         zeitfilterValue = '';
         addData = false;
-    }
+    }*/
     if(addData)
     {
         $('#filter-table').data('kendoGrid').dataSource.add(
         {
-            name: "Zeitraum",
-            selector: zeitfilterSelector,
+            name: "Zeitpunkt",
+            selector: 'ist',//zeitfilterSelector,
             value: zeitfilterValue
         });
     }
@@ -133,7 +133,7 @@ $("#filter-submit").click(function()
 
 $(document).ready(function()
 {
-    function startChange() {
+    /*function startChange() {
         var startDate = start.value(),
             endDate = end.value();
 
@@ -165,20 +165,20 @@ $(document).ready(function()
             start.max(endDate);
             end.min(endDate);
         }
-    }
+    }*/
 
     var start = $("#zeitfilter-start").kendoDatePicker({
-        change: startChange,
+        /*change: startChange,*/
         format: "MM.yyyy"
     }).data("kendoDatePicker");
-
+/*)
     var end = $("#zeitfilter-end").kendoDatePicker({
         change: endChange,
         format: "MM.yyyy"
     }).data("kendoDatePicker");
 
     start.max(end.value());
-    end.min(start.value());
+    end.min(start.value());*/
 
 
     $.getJSON( "js/filterdata.json", function(jsonFilterData) {

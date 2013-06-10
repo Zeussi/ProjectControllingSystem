@@ -28,7 +28,7 @@
         <!-- Add your site or application content here -->
         <header>
             <div id="logo"><a href="#"><img src="img/blackwhite/17-bar-chart-white.png"> ProjectControllingSystem</a></div>
-            <a href="#" class="k-button k-upload-files k-state-selected" id="import"><span class="icon-upload"></span>Datei importieren</a>
+            <!--<a href="#" class="k-button k-upload-files k-state-selected" id="import"><span class="icon-upload"></span>Datei importieren</a>-->
         </header>
         <!--<aside id="navigation">
             <nav>
@@ -128,7 +128,7 @@
         <script src="js/main.js"></script>
 
         <script>
-            $.getJSON( "/service/time-trackings", function(jsonFilterData) {
+            $.getJSON( "service/time-trackings", function(jsonFilterData) {
                 setTableContent(jsonFilterData);
             });
             function setTableContent(jsonSourceData)
@@ -142,7 +142,7 @@
                                 pageSize: 20
                             },
                             groupable: true,
-                            sortable: true,
+                            sortable: false,
                             pageable: {
                                 refresh: true,
                                 pageSizes: true,
@@ -193,7 +193,7 @@
                             }
                             ],
                             // filter menu settings
-                            filterable: {
+                            /*filterable: {
                                 name: "FilterMenu",
                                 extra: true, // turns on/off the second filter option
                                 messages: {
@@ -233,7 +233,7 @@
                                         lt: "Datum ist vor"
                                     }
                                 }
-                            },
+                            },*/
                             dataBound: function() {
                                 //checks if there are any groups
                                 if(this.dataSource.group().length == 0) {

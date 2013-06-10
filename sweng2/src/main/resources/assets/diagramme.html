@@ -2,7 +2,8 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -28,7 +29,7 @@
         <!-- Add your site or application content here -->
         <header>
             <div id="logo"><a href="#"><img src="img/blackwhite/17-bar-chart-white.png"> ProjectControllingSystem</a></div>
-            <a href="#" class="k-button k-upload-files k-state-selected" id="import"><span class="icon-upload"></span>Datei importieren</a>
+            <!--<a href="#" class="k-button k-upload-files k-state-selected" id="import"><span class="icon-upload"></span>Datei importieren</a>-->
         </header>
         <div id="wrapper" >
             <div id="vertical">
@@ -57,17 +58,25 @@
                             <div class="pane-content">
 
                                         <div id="diagramme">
-                                            Projektauslastung
-                                            <canvas id="diagram-auslastung" width="400" height="400"></canvas>
+                                            <br />
+                                            <a name="1">Projektauslastung</a><br />
+                                            <a href="#2"><canvas id="diagram-auslastung" width="800" height="700"></canvas></a>
 
-                                            Ertrag
-                                            <canvas id="diagram-ertrag" width="400" height="400"></canvas>
+                                            <br /><br />
 
-                                            Krankheitsauslastung
-                                            <canvas id="diagram-krankheitsauslastung" width="400" height="400"></canvas>
+                                            <a name="2">Ertrag</a><br />
+                                            <a href="#3"><canvas id="diagram-ertrag" width="800" height="700"></canvas></a>
 
-                                            Gesamtauslastung
-                                            <canvas id="diagram-auslastung-zeitverlauf" width="400" height="400"></canvas>
+                                            <br /><br /><br />
+
+                                            <a name="3">Krankheitsauslastung</a><br />
+                                            <a href="#4"><canvas id="diagram-krankheitsauslastung" width="800" height="700"></canvas></a>
+
+                                            <br /><br /><br />
+
+                                            <a name="4">Gesamtauslastung</a><br />
+                                            <a href="#1"><canvas id="diagram-auslastung-zeit" width="800" height="700"></canvas></a>
+                                            <br /><br />
                                         </div>
                             </div>
                         </div>
