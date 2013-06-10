@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>ProjectControllingSystem</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/kendo.common.min.css">
+        <link rel="stylesheet" href="css/kendo.default.min.css">
+        <link rel="stylesheet" href="css/kendo.individual.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/individual.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <header>
+            <div id="logo"><a href="#"><img src="img/blackwhite/17-bar-chart-white.png"> ProjectControllingSystem</a></div>
+            <!--<a href="#" class="k-button k-upload-files k-state-selected" id="import"><span class="icon-upload"></span>Datei importieren</a>-->
+        </header>
+        <!--<aside id="navigation">
+            <nav>
+                <ul>
+                    <li><a href="#" class="navigation-header">Menü</a></li>
+                    <li><a href="#">Daten anzeigen</a></li>
+                    <li><a href="#" class="navigation-selected">Filter erstellen</a></li>
+                    <li><a href="#">Kennzahlen anzeigen</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <div id="content">
+            <!--<div id="tabstrip">
+                <ul>
+                    <li class="k-state-active">Startseite</li>
+
+                </ul>
+                <div>
+                    <div class="weather">
+                        <h2>17<span>&ordm;C</span></h2>
+                        <p>Rainy weather in Paris.</p>
+                        <p>Rainy weather in Paris.</p>
+                        <p>Rainy weather in Paris.</p>
+                        <p>Rainy weather in Paris.</p>
+                        <p>Rainy weather in Paris.</p><p>Rainy weather in Paris.</p><p>Rainy weather in Paris.</p><p>Rainy weather in Paris.</p><p>Rainy weather in Paris.</p>
+                    </div>
+                    <span class="rainy">&nbsp;</span>
+                </div>
+                <div>
+                    <div class="weather">
+                        <h2>29<span>&ordm;C</span></h2>
+                        <p>Sunny weather in New York.</p>
+                    </div>
+                    <span class="sunny">&nbsp;</span>
+                </div>
+            </div>-->
+        <!--Hallo.
+        </div>-->
+
+        <div id="wrapper" >
+            <div id="vertical">
+                <div id="top-pane">
+                    <div id="horizontal" style="height: 100%; width: 100%;">
+                        <div id="left-pane">
+                            <div class="pane-content">
+
+
+                                <aside id="navigation">
+                                    <nav>
+                                        <ul>
+                                            <li><a href="#" class="navigation-header">Menü</a></li>
+                                            <li><a href="index.html">Daten anzeigen</a></li>
+                                            <li><a href="filter.html" class="navigation-selected">Filter erstellen</a></li>
+                                            <li><a href="kennzahlen.html">Kennzahlen anzeigen</a></li>
+                                        </ul>
+                                    </nav>
+                                </aside>
+
+
+
+                            </div>
+                        </div>
+                        <div id="right-pane">
+                            <div class="pane-content">
+
+
+
+                                <script src="js/people.js"></script>
+
+
+                                        <div id="filter-wrapper">
+                                            <div id="filter">
+                                                <a href="#" id="mitarbeiterfilter" class="k-button filter-button"><span class="icon-worker"></span>Mitarbeiterfilter</a>
+                                                <a href="#" id="bereichsfilter" class="k-button filter-button"><span class="icon-section"></span>Bereichsfilter</a>
+                                                <a href="#" id="zeitfilter" class="k-button filter-button"><span class="icon-time"></span>Zeitfilter</a>
+                                            </div>
+                                        </div>
+                                        <div id="filter-table"></div>
+                                        <div id="filter-footer">
+                                            <div style="float: left; padding-left: 20px;">Name: <input type="text" class="k-textbox" id="filter-name" value="Filter" /></div>
+                                            <div style="float: right;"><input type="button" class="k-button" id="filter-submit" value="Filter speichern" /></div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="window" style="display: none">
+            <input id="upload" type="file" title="" />
+        </div>
+        <div id="mitarbeiterfilter-window" style="display: none">
+            <select id="mitarbeiterfilter-type">
+                <option value="Mitarbeiter-Name">Name</option>
+                <option value="Mitarbeiter-Id">Id</option>
+            </select>
+            <br /><br />
+            <!--<select id="mitarbeiterfilter-selector">
+                <option>ist gleich</option>
+                <option>ist größer</option>
+                <option>ist größer/gleich</option>
+                <option>ist kleiner</option>
+                <option>ist kleiner/gleich</option>
+            </select>
+            <br /><br />-->
+            <input type="text" class="k-textbox" id="mitarbeiterfilter-value" name="mitarbeiterfilter-value" />
+            <br /><br />
+            <div style="text-align: right;"><input type="button" id="mitarbeiterfilter-submit" class="k-button" value="Ok" /></div>
+        </div>
+        <div id="bereichsfilter-window" style="display: none">
+            <select id="bereichsfilter-type">
+                <option value="Projekt">Projekt</option>
+                <option value="Konto">Konto</option>
+                <option value="Bereich">Bereich</option>
+            </select>
+            <br /><br />
+            <!--<select id="bereichsfilter-selector">
+                <option value="ist gleich">ist gleich</option>
+            </select>
+            <br /><br />-->
+            <input type="text" class="k-textbox" id="bereichsfilter-value" name="bereichsfilter-value" />
+            <br /><br />
+            <div style="text-align: right;"><input type="button" class="k-button" id="bereichsfilter-submit" value="Ok" /></div>
+        </div>
+        <div id="zeitfilter-window" style="display: none">
+            <input id="zeitfilter-start" value="" />
+            <!--<br /><br />
+            bis
+            <br /><br />
+            <input id="zeitfilter-end" value=""/>-->
+            <br /><br />
+            <div style="text-align: right;"><input type="button" id="zeitfilter-submit" class="k-button" value="Ok" /></div>
+        </div>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
+        <script src="js/vendor/kendo.web.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/localdatabase.js"></script>
+        <script src="js/filter.js"></script>
+        <script src="js/vendor/cultures/kendo.culture.de-DE.min.js"></script>
+        <script>
+
+        </script>
+    </body>
+</html>
