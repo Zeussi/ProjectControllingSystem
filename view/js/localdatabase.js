@@ -136,8 +136,10 @@ function displayChartsHandler(transaction, results)
         }
         // convert JS object to JSON string by json2.js plugin
         data = JSON.stringify(data);
-        createPostForDisplay(data);
-        console.log(data);
+        drawDiagrams(data);
+        //createPostForDisplay(data);
+        //console.log(data);
+
     }
 }
 
