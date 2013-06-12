@@ -2,14 +2,13 @@ package edu.hm.cs.team8.keyfiguresCalculator.keyfigure;
 
 import java.util.Set;
 
-import edu.hm.cs.team8.keyfiguresCalculator.to.KeyFigureMeasure;
-import edu.hm.cs.team8.keyfiguresCalculator.to.KeyFigureResult;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
 
 public class PerformanceKeyFigure implements IKeyFigure {
 
 	@Override
-	public KeyFigureResult calculate(KeyFigures keyfigure, final Set<TimeTrackingEntry> timeTrackings) {
+	public KeyFigureResult calculate(KeyFigures keyfigure,
+			final Set<TimeTrackingEntry> timeTrackings) {
 
 		double sum = 0;
 
@@ -22,6 +21,6 @@ public class PerformanceKeyFigure implements IKeyFigure {
 				sum += timeTracking.getWorkedHours();
 		}
 
-		return new KeyFigureResult(keyfigure, KeyFigureMeasure.HOUR, sum);
+		return new KeyFigureResult(keyfigure, sum);
 	}
 }

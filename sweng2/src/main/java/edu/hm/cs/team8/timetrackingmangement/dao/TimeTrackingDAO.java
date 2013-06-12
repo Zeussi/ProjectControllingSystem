@@ -25,21 +25,27 @@ public class TimeTrackingDAO {
 			final MemberDAO memberDao = new MemberDAO(handle);
 			final AccountDAO accountDao = new AccountDAO(handle);
 
-			final TimeTrackingEntry entry = new TimeTrackingEntry(memberDao.findMemberByID(Long.parseLong(line.get(
-					"mid").toString())), accountDao.findAccountByName(line.get("konto").toString()),
-					Double.parseDouble(line.get("stunden").toString()), Boolean.parseBoolean(line.get("fakturierbar")
-							.toString()), Double.parseDouble(line.get("grenzkosten").toString()),
-					Double.parseDouble(line.get("verrechnungssatz").toString()), Integer.parseInt(line.get("monat")
-							.toString().split("-")[0]), Integer.parseInt(line.get("monat").toString().split("-")[1]));
+			final TimeTrackingEntry entry = new TimeTrackingEntry(
+					memberDao.findMemberByID(Long.parseLong(line.get("mid")
+							.toString())),
+					accountDao.findAccountByName(line.get("konto").toString()),
+					Double.parseDouble(line.get("stunden").toString()),
+					Boolean.parseBoolean(line.get("fakturierbar").toString()),
+					Double.parseDouble(line.get("grenzkosten").toString()),
+					Double.parseDouble(line.get("verrechnungssatz").toString()),
+					Integer.parseInt(line.get("monat").toString().split("-")[0]),
+					Integer.parseInt(line.get("monat").toString().split("-")[1]));
 
 			timeTrackings.add(entry);
 
 		}
 	}
 
-	public Set<TimeTrackingEntry> findTimeTrackingsByAccount(final String accountName) {
+	public Set<TimeTrackingEntry> findTimeTrackingsByAccount(
+			final String accountName) {
 
-		final Account account = new AccountDAO(handle).findAccountByName(accountName);
+		final Account account = new AccountDAO(handle)
+				.findAccountByName(accountName);
 
 		final Set<TimeTrackingEntry> result = new HashSet<>();
 
@@ -67,15 +73,18 @@ public class TimeTrackingDAO {
 		return result;
 	}
 
-	public Set<TimeTrackingEntry> findTimeTrackingsByProject(final String projectName) {
+	public Set<TimeTrackingEntry> findTimeTrackingsByProject(
+			final String projectName) {
 
-		final Project project = new ProjectDAO(handle).findProjectByName(projectName);
+		final Project project = new ProjectDAO(handle)
+				.findProjectByName(projectName);
 
 		final Set<TimeTrackingEntry> result = new HashSet<>();
 
 		for (final TimeTrackingEntry timetracking : timeTrackings) {
 
-			final Project ProjectTimeTracking = timetracking.getAccount().getProject();
+			final Project ProjectTimeTracking = timetracking.getAccount()
+					.getProject();
 
 			if (project.equals(ProjectTimeTracking))
 				result.add(timetracking);

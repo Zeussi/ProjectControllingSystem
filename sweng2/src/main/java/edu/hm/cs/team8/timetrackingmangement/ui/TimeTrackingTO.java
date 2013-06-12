@@ -1,4 +1,4 @@
-package edu.hm.cs.team8.keyfiguresCalculator.to;
+package edu.hm.cs.team8.timetrackingmangement.ui;
 
 import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
 
@@ -18,8 +18,10 @@ public class TimeTrackingTO {
 
 	private double workedHours;
 
-	public TimeTrackingTO(String businessArea, String project, int level, long mid, String account, String member,
-			double workedHours, boolean billable, double incrementalCosts, double costRate, String date) {
+	public TimeTrackingTO(String businessArea, String project, int level,
+			long mid, String account, String member, double workedHours,
+			boolean billable, double incrementalCosts, double costRate,
+			String date) {
 		this.setBusinessArea(businessArea);
 		this.setProject(project);
 		this.setLevel(level);
@@ -35,10 +37,13 @@ public class TimeTrackingTO {
 
 	public TimeTrackingTO(final TimeTrackingEntry entry) {
 
-		this(entry.getAccount().getProject().getBusinessArea().getName(), entry.getAccount().getProject().getName(),
-				entry.getMember().getLevel(), entry.getMember().getmId(), entry.getAccount().getName(), entry
-						.getMember().getName(), entry.getWorkedHours(), entry.isBillable(),
-				entry.getIncrementalCosts(), entry.getCostRate(), entry.getMonth() + "-" + entry.getYear());
+		this(entry.getAccount().getProject().getBusinessArea().getName(), entry
+				.getAccount().getProject().getName(), entry.getMember()
+				.getLevel(), entry.getMember().getmId(), entry.getAccount()
+				.getName(), entry.getMember().getName(),
+				entry.getWorkedHours(), entry.isBillable(), entry
+						.getIncrementalCosts(), entry.getCostRate(), entry
+						.getMonth() + "-" + entry.getYear());
 	}
 
 	public String getAccount() {
@@ -131,9 +136,10 @@ public class TimeTrackingTO {
 
 	@Override
 	public String toString() {
-		return "TimeTrackingTO [account=" + account + ", member=" + member + ", workedHours=" + workedHours
-				+ ", billable=" + billable + ", incrementalCosts=" + incrementalCosts + ", costRate=" + costRate
-				+ ", date=" + date + "]";
+		return "TimeTrackingTO [account=" + account + ", member=" + member
+				+ ", workedHours=" + workedHours + ", billable=" + billable
+				+ ", incrementalCosts=" + incrementalCosts + ", costRate="
+				+ costRate + ", date=" + date + "]";
 	}
 
 }

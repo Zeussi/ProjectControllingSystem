@@ -2,6 +2,8 @@ package edu.hm.cs.team8.keyfiguresCalculator.to;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class DiagramResult {
 
@@ -9,47 +11,43 @@ public class DiagramResult {
 
 	private String labelY;
 
-	public String getLabelX() {
-		return labelX;
+	private Map<String, String> valuesX = new TreeMap<>();
+
+	public DiagramResult() {
 	}
 
-	public void setLabelX(String labelX) {
-		this.labelX = labelX;
+	public void addXandYValue(String x, String y) {
+		valuesX.put(x, y);
+	}
+
+	public String getLabelX() {
+		return labelX;
 	}
 
 	public String getLabelY() {
 		return labelY;
 	}
 
+	public List<String> getValuesX() {
+		return new ArrayList<>(valuesX.keySet());
+	}
+
+	public List<String> getValuesY() {
+		return new ArrayList<>(valuesX.values());
+	}
+
+	public void setLabelX(String labelX) {
+		this.labelX = labelX;
+	}
+
 	public void setLabelY(String labelY) {
 		this.labelY = labelY;
 	}
 
-	public List<String> getValuesX() {
-		return valuesX;
-	}
-
-	public void setValuesX(List<String> valuesX) {
-		this.valuesX = valuesX;
-	}
-
-	public List<String> getValuesY() {
-		return valuesY;
-	}
-
-	public void setValuesY(List<String> valuesY) {
-		this.valuesY = valuesY;
-	}
-
-	private List<String> valuesX = new ArrayList<>();
-	private List<String> valuesY = new ArrayList<>();
-
-	public DiagramResult() {
-	}
-
-	public void addXandYValue(String x, String y) {
-		valuesX.add(x);
-		valuesY.add(y);
+	@Override
+	public String toString() {
+		return "DiagramResult [labelX=" + labelX + ", labelY=" + labelY
+				+ ", valuesX=" + valuesX + "]";
 	}
 
 }

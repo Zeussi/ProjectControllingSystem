@@ -1,4 +1,4 @@
-package edu.hm.cs.team8.keyfiguresCalculator.to;
+package edu.hm.cs.team8.keyfiguresCalculator.keyfigure;
 
 public enum KeyFigureMeasure {
 

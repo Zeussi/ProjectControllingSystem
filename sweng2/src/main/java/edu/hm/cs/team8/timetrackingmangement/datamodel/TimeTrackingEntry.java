@@ -20,9 +20,10 @@ public class TimeTrackingEntry {
 
 	private int year;
 
-	public TimeTrackingEntry(final Member member, final Account account, final double workedHours,
-			final boolean billable, final double incrementalCosts, final double costRate, final int month,
-			final int year) {
+	public TimeTrackingEntry(final Member member, final Account account,
+			final double workedHours, final boolean billable,
+			final double incrementalCosts, final double costRate,
+			final int month, final int year) {
 		this.member = member;
 		this.account = account;
 		this.workedHours = workedHours;
@@ -33,6 +34,42 @@ public class TimeTrackingEntry {
 		this.setYear(year);
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TimeTrackingEntry other = (TimeTrackingEntry) obj;
+		if (account == null) {
+			if (other.account != null)
+				return false;
+		} else if (!account.equals(other.account))
+			return false;
+		if (billable != other.billable)
+			return false;
+		if (Double.doubleToLongBits(costRate) != Double
+				.doubleToLongBits(other.costRate))
+			return false;
+		if (Double.doubleToLongBits(incrementalCosts) != Double
+				.doubleToLongBits(other.incrementalCosts))
+			return false;
+		if (member == null) {
+			if (other.member != null)
+				return false;
+		} else if (!member.equals(other.member))
+			return false;
+		if (month != other.month)
+			return false;
+		if (Double.doubleToLongBits(workedHours) != Double
+				.doubleToLongBits(other.workedHours))
+			return false;
+		if (year != other.year)
+			return false;
+		return true;
+	}
 
 	public Account getAccount() {
 		return account;
@@ -62,28 +99,6 @@ public class TimeTrackingEntry {
 		return year;
 	}
 
-
-	public boolean isBillable() {
-		return billable;
-	}
-
-	public void setMonth(int month) {
-		this.month = month;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
-	}
-
-	@Override
-	public String toString() {
-		return String
-				.format("Account: %s%nM-ID: %s%nWorkedHours: %f%nBillable: %b%nDifferential Costs: %f%nCost Rate: %f%nDate: %d-%d",
-						getAccount(), getMember().getmId(), getWorkedHours(), isBillable(), getIncrementalCosts(),
-						getCostRate(), getMonth(), getYear());
-	}
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -103,38 +118,24 @@ public class TimeTrackingEntry {
 		return result;
 	}
 
+	public boolean isBillable() {
+		return billable;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		TimeTrackingEntry other = (TimeTrackingEntry) obj;
-		if (account == null) {
-			if (other.account != null)
-				return false;
-		} else if (!account.equals(other.account))
-			return false;
-		if (billable != other.billable)
-			return false;
-		if (Double.doubleToLongBits(costRate) != Double.doubleToLongBits(other.costRate))
-			return false;
-		if (Double.doubleToLongBits(incrementalCosts) != Double.doubleToLongBits(other.incrementalCosts))
-			return false;
-		if (member == null) {
-			if (other.member != null)
-				return false;
-		} else if (!member.equals(other.member))
-			return false;
-		if (month != other.month)
-			return false;
-		if (Double.doubleToLongBits(workedHours) != Double.doubleToLongBits(other.workedHours))
-			return false;
-		if (year != other.year)
-			return false;
-		return true;
+	public String toString() {
+		return String
+				.format("Account: %s%nM-ID: %s%nWorkedHours: %f%nBillable: %b%nDifferential Costs: %f%nCost Rate: %f%nDate: %d-%d",
+						getAccount(), getMember().getmId(), getWorkedHours(),
+						isBillable(), getIncrementalCosts(), getCostRate(),
+						getMonth(), getYear());
 	}
 }

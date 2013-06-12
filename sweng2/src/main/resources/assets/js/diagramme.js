@@ -1,4 +1,6 @@
+
 initDatabase();
+alert('a')
 var getParam = getUrlVars()["filtername"];
 displayChartsByFiltername(decodeURIComponent(getParam));
 

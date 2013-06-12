@@ -8,7 +8,8 @@ public class TimeTrackingManagementFactory {
 
 	private static ITimeTrackingMangement timeTrackingManagement;
 
-	public static synchronized ITimeTrackingMangement makeTimeTrackingManagement(final Handle handle) {
+	public static synchronized ITimeTrackingMangement makeTimeTrackingManagement(
+			final Handle handle) {
 		if (timeTrackingManagement == null)
 			timeTrackingManagement = new TimeTrackingManagmentImpl(handle);
 

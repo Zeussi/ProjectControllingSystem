@@ -22,7 +22,8 @@ public class Member {
 
 		final Member that = (Member) obj;
 
-		return that.getLevel() == getLevel() && that.getmId() == getmId() && that.getName().equals(getName());
+		return that.getLevel() == getLevel() && that.getmId() == getmId()
+				&& that.getName().equals(getName());
 	}
 
 	public int getLevel() {
@@ -44,7 +45,9 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return String.format("Member Name: %s%nMember ID: %d%nMember Level: %d", getName(), getmId(), getLevel());
+		return String.format(
+				"Member Name: %s%nMember ID: %d%nMember Level: %d", getName(),
+				getmId(), getLevel());
 	}
 
 }

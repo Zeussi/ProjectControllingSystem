@@ -21,7 +21,8 @@ public class BusinessAreaFilter implements IFilter {
 
 		for (final TimeTrackingEntry entry : entries) {
 
-			if (entry.getAccount().getProject().getBusinessArea().getName().equals(businessArea))
+			if (entry.getAccount().getProject().getBusinessArea().getName()
+					.equals(businessArea))
 				result.add(entry);
 		}
 

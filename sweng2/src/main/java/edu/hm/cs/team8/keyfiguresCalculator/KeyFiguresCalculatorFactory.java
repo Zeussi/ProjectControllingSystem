@@ -7,7 +7,8 @@ public class KeyFiguresCalculatorFactory {
 
 	private static IKeyFiguresCalculator keyFiguresCalculator;
 
-	public static IKeyFiguresCalculator makeKeyFiguresCalculator(ITimeTrackingMangement management) {
+	public static IKeyFiguresCalculator makeKeyFiguresCalculator(
+			ITimeTrackingMangement management) {
 		if (keyFiguresCalculator == null)
 			keyFiguresCalculator = new KeyFiguresCalculatorImpl(management);
 

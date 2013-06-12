@@ -12,7 +12,8 @@ public class Cache {
 	public synchronized static List<Map<String, Object>> getCache(Handle handle) {
 
 		if (cache == null) {
-			final Query<Map<String, Object>> query = handle.createQuery("select * from BI");
+			final Query<Map<String, Object>> query = handle
+					.createQuery("select * from BI");
 
 			cache = query.list();
 		}

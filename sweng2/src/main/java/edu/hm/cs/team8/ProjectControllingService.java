@@ -26,8 +26,8 @@ public class ProjectControllingService extends
 	@Override
 	public void initialize(Bootstrap<ProjectControllingConfiguration> bootstrap) {
 		bootstrap.setName("project-controlling-service");
-        bootstrap.addBundle(new ConfiguredAssetsBundle("/assets/", "/", "index.html"));
-
+		bootstrap.addBundle(new ConfiguredAssetsBundle("/assets/", "/",
+				"index.html"));
 
 	}
 

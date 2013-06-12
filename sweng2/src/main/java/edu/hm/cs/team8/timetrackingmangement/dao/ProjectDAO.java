@@ -21,7 +21,8 @@ public class ProjectDAO {
 			if (!line.containsKey("projekt"))
 				continue;
 
-			projects.add(new Project(line.get("projekt").toString(), new BusinessArea(line.get("bereich").toString())));
+			projects.add(new Project(line.get("projekt").toString(),
+					new BusinessArea(line.get("bereich").toString())));
 		}
 	}
 

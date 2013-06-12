@@ -19,7 +19,8 @@ public class Account {
 
 		final Account that = (Account) obj;
 
-		return that.getName().equals(getName()) && that.getProject().equals(getProject());
+		return that.getName().equals(getName())
+				&& that.getProject().equals(getProject());
 	}
 
 	public String getName() {
@@ -37,6 +38,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return String.format("Account Name: %s%nProjekt Name: %s", getName(), getProject().getName());
+		return String.format("Account Name: %s%nProjekt Name: %s", getName(),
+				getProject().getName());
 	}
 }

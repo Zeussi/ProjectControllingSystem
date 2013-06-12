@@ -22,8 +22,9 @@ public class AccountDAO {
 			if (!line.containsKey("projekt"))
 				continue;
 
-			accounts.add(new Account(line.get("konto").toString(), new Project(line.get("projekt").toString(),
-					new BusinessArea(line.get("bereich").toString()))));
+			accounts.add(new Account(line.get("konto").toString(), new Project(
+					line.get("projekt").toString(), new BusinessArea(line.get(
+							"bereich").toString()))));
 		}
 	}
 

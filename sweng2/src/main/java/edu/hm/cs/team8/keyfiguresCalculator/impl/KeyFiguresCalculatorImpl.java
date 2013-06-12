@@ -9,14 +9,17 @@ import java.util.Set;
 import edu.hm.cs.team8.filter.IFilter;
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.BillablePerformanceKeyFigure;
+import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.CostKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.IKeyFigure;
+import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.IllKeyFigure;
+import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.KeyFigureResult;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.KeyFigures;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.PerformanceKeyFigure;
+import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.PerformanceReturn;
+import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.ReturnKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.keyfigure.WorkloadKeyFigure;
 import edu.hm.cs.team8.keyfiguresCalculator.to.DiagramResult;
 import edu.hm.cs.team8.keyfiguresCalculator.to.FilterTO;
-import edu.hm.cs.team8.keyfiguresCalculator.to.KeyFigureMeasure;
-import edu.hm.cs.team8.keyfiguresCalculator.to.KeyFigureResult;
 import edu.hm.cs.team8.keyfiguresCalculator.to.KeyFigureTableEntry;
 import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
 import edu.hm.cs.team8.timetrackingmangement.datamodel.TimeTrackingEntry;
@@ -29,6 +32,10 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 		logic.put(KeyFigures.BILLABLE_PERFORMANCE,
 				new BillablePerformanceKeyFigure());
 		logic.put(KeyFigures.WORKLOAD, new WorkloadKeyFigure());
+		logic.put(KeyFigures.COST, new CostKeyFigure());
+		logic.put(KeyFigures.ILL, new IllKeyFigure());
+		logic.put(KeyFigures.PERFORMANCE_RETURN, new PerformanceReturn());
+		logic.put(KeyFigures.RETURN, new ReturnKeyFigure());
 	}
 
 	private final ITimeTrackingMangement timeTracking;
@@ -58,6 +65,30 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 		return result;
 	}
 
+	private Set<KeyFigureResult> calculateFigures(
+			Set<TimeTrackingEntry> entries, KeyFigures... keyfigures) {
+
+		return calculateFigures(entries,
+				new HashSet<>(Arrays.asList(keyfigures)));
+
+	}
+
+	private Set<KeyFigureResult> calculateFigures(
+			Set<TimeTrackingEntry> entries, Set<KeyFigures> keyfigures) {
+		final Set<KeyFigureResult> result = new HashSet<>();
+
+		for (Map.Entry<KeyFigures, IKeyFigure> entry : logic.entrySet()) {
+			if (keyfigures.contains(entry.getKey())) {
+				KeyFigureResult value = entry.getValue().calculate(
+						entry.getKey(), entries);
+				result.add(value);
+			}
+		}
+
+		return result;
+
+	}
+
 	@Override
 	public Set<KeyFigureTableEntry> calculateOnlyFigures(
 			final FilterTO... filters) {
@@ -77,35 +108,13 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 		return result;
 	}
 
-	private Set<KeyFigureResult> calculateFigures(
-			Set<TimeTrackingEntry> entries, Set<KeyFigures> keyfigures) {
-		final Set<KeyFigureResult> result = new HashSet<>();
-
-		for (Map.Entry<KeyFigures, IKeyFigure> entry : logic.entrySet()) {
-			if (keyfigures.contains(entry.getKey())) {
-				KeyFigureResult value = entry.getValue().calculate(
-						entry.getKey(), entries);
-				result.add(value);
-			}
-		}
-
-		return result;
-
-	}
-
-	private Set<KeyFigureResult> calculateFigures(
-			Set<TimeTrackingEntry> entries, KeyFigures... keyfigures) {
-
-		return calculateFigures(entries,
-				new HashSet<>(Arrays.asList(keyfigures)));
-
-	}
-
 	@Override
-	public DiagramResult calculateTimeBehaviourFiguresForPerformance(
+	public DiagramResult calculateTimeBehaviourFigure(String keyfigureTo,
 			FilterTO... filters) {
 
 		final Map<String, Set<TimeTrackingEntry>> fiteredData = new HashMap<>();
+		final KeyFigures keyFigureToCalculate = KeyFigures
+				.parseKeyFigure(keyfigureTo);
 
 		final Set<TimeTrackingEntry> entries = and(or(
 				FilterParser.parse(filters), timeTracking.getTimeTrackings()));
@@ -123,14 +132,14 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 		}
 
 		final DiagramResult result = new DiagramResult();
-		result.setLabelX(KeyFigures.PERFORMANCE.toString());
-		result.setLabelY(KeyFigureMeasure.HOUR.toString());
+		result.setLabelX(keyFigureToCalculate.toString());
+		result.setLabelY(keyFigureToCalculate.getMeasure().toString());
 
 		for (Map.Entry<String, Set<TimeTrackingEntry>> entry : fiteredData
 				.entrySet()) {
 
 			final KeyFigureResult keyFigures = calculateFigures(
-					entry.getValue(), KeyFigures.PERFORMANCE).iterator().next();
+					entry.getValue(), keyFigureToCalculate).iterator().next();
 
 			result.addXandYValue(entry.getKey(), keyFigures.getValue()
 					.toString());

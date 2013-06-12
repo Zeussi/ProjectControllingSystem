@@ -12,7 +12,8 @@ public class FilterParser {
 	public static IFilter[] parse(FilterTO[] filters) {
 		final Set<IFilter> result = new HashSet<>();
 		for (final FilterTO fto : filters) {
-			final IFilter filter = FilterFactory.makeFilter(fto.getName(), fto.getValue());
+			final IFilter filter = FilterFactory.makeFilter(fto.getName(),
+					fto.getValue());
 
 			if (filter == null)
 				continue;

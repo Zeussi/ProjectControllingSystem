@@ -9,6 +9,7 @@ import edu.hm.cs.team8.keyfiguresCalculator.to.KeyFigureTableEntry;
 public interface IKeyFiguresCalculator {
 
 	Set<KeyFigureTableEntry> calculateOnlyFigures(FilterTO... filters);
-	
-	DiagramResult calculateTimeBehaviourFiguresForPerformance(FilterTO... filters);
+
+	DiagramResult calculateTimeBehaviourFigure(String keyfigure,
+			FilterTO... filters);
 }

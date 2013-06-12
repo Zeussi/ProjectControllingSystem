@@ -9,15 +9,14 @@ public class FilterTO {
 
 	@NotNull
 	private String value;
-	
+
 	public FilterTO() {
 	}
-	
-	public FilterTO(String name, String value)
-	{
+
+	public FilterTO(String name, String value) {
 		this.name = name;
 		this.value = value;
-		
+
 	}
 
 	@Override

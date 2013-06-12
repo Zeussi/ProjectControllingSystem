@@ -20,8 +20,9 @@ public class MemberDAO {
 			if (!line.containsKey("mitarbeiter"))
 				continue;
 
-			members.add(new Member(Long.parseLong(line.get("mid").toString()), line.get("mitarbeiter").toString(),
-					Integer.parseInt(line.get("entwicklungsstufe").toString())));
+			members.add(new Member(Long.parseLong(line.get("mid").toString()),
+					line.get("mitarbeiter").toString(), Integer.parseInt(line
+							.get("entwicklungsstufe").toString())));
 		}
 	}
 

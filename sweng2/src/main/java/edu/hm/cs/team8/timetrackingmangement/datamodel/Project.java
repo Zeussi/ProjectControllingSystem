@@ -19,7 +19,8 @@ public class Project {
 
 		final Project that = (Project) obj;
 
-		return that.getBusinessArea().equals(getBusinessArea()) && that.getName().equals(getName());
+		return that.getBusinessArea().equals(getBusinessArea())
+				&& that.getName().equals(getName());
 
 	}
 
@@ -38,7 +39,8 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return String.format("Project Name: %s%nBusiness Area Name: %s", name, businessArea.getName());
+		return String.format("Project Name: %s%nBusiness Area Name: %s", name,
+				businessArea.getName());
 	}
 
 }
