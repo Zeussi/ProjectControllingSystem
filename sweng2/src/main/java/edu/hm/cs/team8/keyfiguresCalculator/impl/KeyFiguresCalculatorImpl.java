@@ -151,6 +151,10 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 	private Set<Set<TimeTrackingEntry>> or(final IFilter[] filters,
 			final Set<TimeTrackingEntry> entries) {
 
+		final Set<Set<TimeTrackingEntry>> result = new HashSet<>();
+		if (filters.length == 0)
+			result.add(entries);
+
 		final Map<Class<? extends IFilter>, Set<TimeTrackingEntry>> ord = new HashMap<>();
 
 		for (final IFilter filter : filters) {
@@ -163,8 +167,6 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 			ord.put(filter.getClass(), f);
 
 		}
-
-		final Set<Set<TimeTrackingEntry>> result = new HashSet<>();
 
 		if (filters.length == 0)
 			result.add(entries);

@@ -9,8 +9,16 @@ public class ReturnKeyFigure implements IKeyFigure {
 	@Override
 	public KeyFigureResult calculate(KeyFigures keyfigure,
 			Set<TimeTrackingEntry> timetrackings) {
-		// TODO Auto-generated method stub
-		return null;
+
+		final double performanceReturn = (double) new PerformanceReturn()
+				.calculate(keyfigure, timetrackings).getValue();
+
+		final double cost = (double) new CostKeyFigure().calculate(keyfigure,
+				timetrackings).getValue();
+
+		final double result = performanceReturn - cost;
+
+		return new KeyFigureResult(keyfigure, result);
 	}
 
 }

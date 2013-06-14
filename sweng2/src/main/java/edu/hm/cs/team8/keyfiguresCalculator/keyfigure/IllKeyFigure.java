@@ -9,8 +9,15 @@ public class IllKeyFigure implements IKeyFigure {
 	@Override
 	public KeyFigureResult calculate(KeyFigures keyfigure,
 			Set<TimeTrackingEntry> timetrackings) {
-		// TODO Auto-generated method stub
-		return null;
+
+		double sum = 0;
+
+		for (final TimeTrackingEntry timeTracking : timetrackings) {
+			if (timeTracking.getAccount().getName().equals("KRANK"))
+				sum += timeTracking.getWorkedHours();
+		}
+
+		return new KeyFigureResult(keyfigure, sum);
 	}
 
 }
