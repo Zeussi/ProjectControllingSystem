@@ -121,14 +121,18 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 
 		for (TimeTrackingEntry entry : entries) {
 
-			Set<TimeTrackingEntry> temp = fiteredData.get(entry.getMonth()
-					+ "-" + entry.getYear());
+			String date = entry.getMonth() + "-" + entry.getYear();
+			if (entry.getMonth() < 10)
+				date = "0" + date;
+
+			Set<TimeTrackingEntry> temp = fiteredData.get(date);
 			if (temp == null)
 				temp = new HashSet<>();
 
 			temp.add(entry);
 
-			fiteredData.put(entry.getMonth() + "-" + entry.getYear(), temp);
+			if (entry.getMonth() < 10)
+				fiteredData.put(date, temp);
 		}
 
 		final DiagramResult result = new DiagramResult();

@@ -13,6 +13,11 @@ $(document).ready(function(){
         title: "Zeitfilter",
         visible: false
     }).data("kendoWindow");
+	
+	 var windSubmit = $("#filter-window").kendoWindow({
+        title: "Result",
+        visible: false
+    }).data("kendoWindow");
 });
 
 $("#mitarbeiterfilter-type").kendoDropDownList();
@@ -120,15 +125,9 @@ $("#zeitfilter").click(function(){
 
 $("#filter-submit").click(function()
 {
-    // Creates new database if not available, otherwise it loads the database.
-    initDatabase();
-    var data = $("#filter-table").data('kendoGrid').dataSource.view();
-
-    if(data.length != 0)
-    {
-        var filtername = $("#filter-name").val();
-        issetFiltername(filtername, filtername, 0, data);
-    }
+    var win = $("#filter-window").data("kendoWindow");
+    win.center();
+    win.open();
 });
 
 $(document).ready(function()
