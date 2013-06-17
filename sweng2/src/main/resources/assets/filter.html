@@ -21,52 +21,11 @@
 <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
-<!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-<!-- Add your site or application content here -->
 <header>
 <div id="logo">
 	<a href="#"><img src="img/blackwhite/17-bar-chart-white.png"> ProjectControllingSystem</a>
 </div>
-<!--<a href="#" class="k-button k-upload-files k-state-selected" id="import"><span class="icon-upload"></span>Datei importieren</a>-->
 </header>
-<!--<aside id="navigation">
-            <nav>
-                <ul>
-                    <li><a href="#" class="navigation-header">Menü</a></li>
-                    <li><a href="#">Daten anzeigen</a></li>
-                    <li><a href="#" class="navigation-selected">Filter erstellen</a></li>
-                    <li><a href="#">Kennzahlen anzeigen</a></li>
-                </ul>
-            </nav>
-        </aside>
-        <div id="content">
-            <!--<div id="tabstrip">
-                <ul>
-                    <li class="k-state-active">Startseite</li>
-                </ul>
-                <div>
-                    <div class="weather">
-                        <h2>17<span>&ordm;C</span></h2>
-                        <p>Rainy weather in Paris.</p>
-                        <p>Rainy weather in Paris.</p>
-                        <p>Rainy weather in Paris.</p>
-                        <p>Rainy weather in Paris.</p>
-                        <p>Rainy weather in Paris.</p><p>Rainy weather in Paris.</p><p>Rainy weather in Paris.</p><p>Rainy weather in Paris.</p><p>Rainy weather in Paris.</p>
-                    </div>
-                    <span class="rainy">&nbsp;</span>
-                </div>
-                <div>
-                    <div class="weather">
-                        <h2>29<span>&ordm;C</span></h2>
-                        <p>Sunny weather in New York.</p>
-                    </div>
-                    <span class="sunny">&nbsp;</span>
-                </div>
-            </div>-->
-<!--Hallo.
-        </div>-->
 <div id="wrapper">
 	<div id="vertical">
 		<div id="top-pane">
@@ -99,7 +58,7 @@
 						</div>
 						<div id="filter-footer">
 							<div style="float: left; padding-left: 20px;">
-								Name: <input type="text" class="k-textbox" id="filter-name" value="Filter"/>
+								 Name: <input type="text" class="k-textbox" id="filter-name" value="Filter"/>
 							</div>
 							<div style="float: right;">
 								<input type="button" class="k-button" id="filter-submit" value="Filter speichern"/>
@@ -115,11 +74,19 @@
 	<input id="upload" type="file" title=""/>
 </div>
 <div id="filter-window" style="display: none">
-	<div style="text-align: right;">
-		<p>
-			lkajflkdsjflkdf
-		</p>
-	</div>
+	<br/>
+	<a name="1">Projektauslastung</a><br/>
+	<canvas id="diagram-auslastung" width="800" height="700"></canvas>
+	<br/><br/>
+	<a name="2">Ertrag</a><br/>
+	<canvas id="diagram-ertrag" width="800" height="700"></canvas>
+	<br/><br/><br/>
+	<a name="3">Krankheitsauslastung</a><br/>
+	<canvas id="diagram-krankheitsauslastung" width="800" height="700"></canvas>
+	<br/><br/><br/>
+	<a name="4">Gesamtauslastung</a><br/>
+	<canvas id="diagram-auslastung-zeit" width="800" height="700"></canvas>
+	<br/><br/>
 </div>
 <div id="mitarbeiterfilter-window" style="display: none">
 	<select id="mitarbeiterfilter-type">
@@ -127,14 +94,6 @@
 		<option value="Mitarbeiter-Id">Id</option>
 	</select>
 	<br/><br/>
-	<!--<select id="mitarbeiterfilter-selector">
-                <option>ist gleich</option>
-                <option>ist größer</option>
-                <option>ist größer/gleich</option>
-                <option>ist kleiner</option>
-                <option>ist kleiner/gleich</option>
-            </select>
-            <br /><br />-->
 	<input type="text" class="k-textbox" id="mitarbeiterfilter-value" name="mitarbeiterfilter-value"/>
 	<br/><br/>
 	<div style="text-align: right;">
@@ -143,15 +102,12 @@
 </div>
 <div id="bereichsfilter-window" style="display: none">
 	<select id="bereichsfilter-type">
-		<option value="Projekt">Projekt</option>
-		<option value="Konto">Konto</option>
-		<option value="Bereich">Bereich</option>
+		<option value="Project">Projekt</option>
+		<option value="Account">Konto</option>
+		<option value="BusinessArea">Bereich</option>
 	</select>
 	<br/><br/>
-	<!--<select id="bereichsfilter-selector">
-                <option value="ist gleich">ist gleich</option>
-            </select>
-            <br /><br />-->
+
 	<input type="text" class="k-textbox" id="bereichsfilter-value" name="bereichsfilter-value"/>
 	<br/><br/>
 	<div style="text-align: right;">
@@ -160,10 +116,6 @@
 </div>
 <div id="zeitfilter-window" style="display: none">
 	<input id="zeitfilter-start" value=""/>
-	<!--<br /><br />
-            bis
-            <br /><br />
-            <input id="zeitfilter-end" value=""/>-->
 	<br/><br/>
 	<div style="text-align: right;">
 		<input type="button" id="zeitfilter-submit" class="k-button" value="Ok"/>
@@ -175,8 +127,9 @@
 <script src="js/main.js"></script>
 <script src="js/localdatabase.js"></script>
 <script src="js/filter.js"></script>
+<script src="js/diagramme.js"></script>
 <script src="js/vendor/cultures/kendo.culture.de-DE.min.js"></script>
-<script>
-        </script>
+<script src="js/vendor/json2.js"></script>
+<script src="js/vendor/chart.min.js"></script>
 </body>
 </html>

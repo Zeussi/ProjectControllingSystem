@@ -16,7 +16,9 @@ $(document).ready(function () {
 
     var windSubmit = $("#filter-window").kendoWindow({
         title: "Result",
-        visible: false
+        visible: false,
+		width: 800,
+		height: 700
     }).data("kendoWindow");
 });
 
@@ -26,13 +28,12 @@ $("#mitarbeiterfilter-submit").click(function (e) {
     $("#mitarbeiterfilter-window").data("kendoWindow").close();
 
     // selected option value of the select / input value
-    var mitarbeiterfilterType = $("#mitarbeiterfilter-type").val();
+    var mitarbeiterfilterType = "MemberFilter";
     var mitarbeiterfilterSelector = "ist gleich"; //$("#mitarbeiterfilter-selector").val();
     var mitarbeiterfilterValue = $("#mitarbeiterfilter-value").val();
 
     $('#filter-table').data('kendoGrid').dataSource.add({
         name: mitarbeiterfilterType,
-        selector: mitarbeiterfilterSelector,
         value: mitarbeiterfilterValue
     });
 });
@@ -43,7 +44,7 @@ $("#bereichsfilter-submit").click(function (e) {
     $("#bereichsfilter-window").data("kendoWindow").close();
 
     // selected option value of the select / input value
-    var bereichsfilterType = $("#bereichsfilter-type").val();
+    var bereichsfilterType = $("#bereichsfilter-type").val() + 'Filter';
     var bereichsfilterSelector = "ist gleich"; //$("#bereichsfilter-selector").val();
     var bereichsfilterValue = $("#bereichsfilter-value").val();
 
@@ -82,7 +83,7 @@ $("#zeitfilter-submit").click(function (e) {
     }*/
     if (addData) {
         $('#filter-table').data('kendoGrid').dataSource.add({
-            name: "Zeitpunkt",
+            name: "TimeFilter",
             selector: 'ist', //zeitfilterSelector,
             value: zeitfilterValue
         });
@@ -121,8 +122,24 @@ $("#zeitfilter").click(function () {
 
 $("#filter-submit").click(function () {
     var win = $("#filter-window").data("kendoWindow");
+	
+	var dataSource = $("#filter-table").data("kendoGrid").dataSource;
+
+	var filterElements = new Array();
+	
+	for(var i = 0; i < dataSource.data().length; i++)
+	{
+		var element = new Object();
+		element.name = dataSource.at(i).name;
+		element.value = dataSource.at(i).value;
+		filterElements.push(element);
+		
+	}
+	drawDiagrams(filterElements, 'PERFORMANCE');
+	
     win.center();
     win.open();
+	
 });
 
 $(document).ready(function () {
@@ -191,10 +208,6 @@ $(document).ready(function () {
                 field: "name",
                 width: 110,
                 title: "Name"
-            }, {
-                field: "selector",
-                width: 130,
-                title: "Bedingung"
             }, {
                 width: 120,
                 field: "value",
