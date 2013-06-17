@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
     var winMitarbeiterfilter = $("#mitarbeiterfilter-window").kendoWindow({
         title: "Mitarbeiterfilter",
         visible: false
@@ -13,8 +13,8 @@ $(document).ready(function(){
         title: "Zeitfilter",
         visible: false
     }).data("kendoWindow");
-	
-	 var windSubmit = $("#filter-window").kendoWindow({
+
+    var windSubmit = $("#filter-window").kendoWindow({
         title: "Result",
         visible: false
     }).data("kendoWindow");
@@ -27,11 +27,10 @@ $("#mitarbeiterfilter-submit").click(function (e) {
 
     // selected option value of the select / input value
     var mitarbeiterfilterType = $("#mitarbeiterfilter-type").val();
-    var mitarbeiterfilterSelector = "ist gleich";//$("#mitarbeiterfilter-selector").val();
+    var mitarbeiterfilterSelector = "ist gleich"; //$("#mitarbeiterfilter-selector").val();
     var mitarbeiterfilterValue = $("#mitarbeiterfilter-value").val();
 
-    $('#filter-table').data('kendoGrid').dataSource.add(
-    {
+    $('#filter-table').data('kendoGrid').dataSource.add({
         name: mitarbeiterfilterType,
         selector: mitarbeiterfilterSelector,
         value: mitarbeiterfilterValue
@@ -45,11 +44,10 @@ $("#bereichsfilter-submit").click(function (e) {
 
     // selected option value of the select / input value
     var bereichsfilterType = $("#bereichsfilter-type").val();
-    var bereichsfilterSelector = "ist gleich";//$("#bereichsfilter-selector").val();
+    var bereichsfilterSelector = "ist gleich"; //$("#bereichsfilter-selector").val();
     var bereichsfilterValue = $("#bereichsfilter-value").val();
 
-    $('#filter-table').data('kendoGrid').dataSource.add(
-    {
+    $('#filter-table').data('kendoGrid').dataSource.add({
         name: bereichsfilterType,
         selector: bereichsfilterSelector,
         value: bereichsfilterValue
@@ -64,7 +62,7 @@ $("#zeitfilter-submit").click(function (e) {
     var zeitfilterStart = $("#zeitfilter-start").val();
     /*var zeitfilterEnd = $("#zeitfilter-end").val();
     var zeitfilterSelector = "von / bis";*/
-    var zeitfilterValue = zeitfilterStart;//+' bis '+zeitfilterEnd;
+    var zeitfilterValue = zeitfilterStart; //+' bis '+zeitfilterEnd;
     var addData = true;
     /*if(zeitfilterStart.length == 0 && zeitfilterEnd.length != 0)
     {
@@ -82,18 +80,16 @@ $("#zeitfilter-submit").click(function (e) {
         zeitfilterValue = '';
         addData = false;
     }*/
-    if(addData)
-    {
-        $('#filter-table').data('kendoGrid').dataSource.add(
-        {
+    if (addData) {
+        $('#filter-table').data('kendoGrid').dataSource.add({
             name: "Zeitpunkt",
-            selector: 'ist',//zeitfilterSelector,
+            selector: 'ist', //zeitfilterSelector,
             value: zeitfilterValue
         });
     }
 });
 
-$("#mitarbeiterfilter").click(function(){
+$("#mitarbeiterfilter").click(function () {
     var win = $("#mitarbeiterfilter-window").data("kendoWindow");
 
     $("#bereichsfilter-window").data("kendoWindow").close();
@@ -103,7 +99,7 @@ $("#mitarbeiterfilter").click(function(){
     win.open();
 });
 
-$("#bereichsfilter").click(function(){
+$("#bereichsfilter").click(function () {
     var win = $("#bereichsfilter-window").data("kendoWindow");
 
     $("#mitarbeiterfilter-window").data("kendoWindow").close();
@@ -113,7 +109,7 @@ $("#bereichsfilter").click(function(){
     win.open();
 });
 
-$("#zeitfilter").click(function(){
+$("#zeitfilter").click(function () {
     var win = $("#zeitfilter-window").data("kendoWindow");
 
     $("#bereichsfilter-window").data("kendoWindow").close();
@@ -123,15 +119,13 @@ $("#zeitfilter").click(function(){
     win.open();
 });
 
-$("#filter-submit").click(function()
-{
+$("#filter-submit").click(function () {
     var win = $("#filter-window").data("kendoWindow");
     win.center();
     win.open();
 });
 
-$(document).ready(function()
-{
+$(document).ready(function () {
     /*function startChange() {
         var startDate = start.value(),
             endDate = end.value();
@@ -170,7 +164,7 @@ $(document).ready(function()
         /*change: startChange,*/
         format: "MM.yyyy"
     }).data("kendoDatePicker");
-/*)
+    /*)
     var end = $("#zeitfilter-end").kendoDatePicker({
         change: endChange,
         format: "MM.yyyy"
@@ -180,12 +174,11 @@ $(document).ready(function()
     end.min(start.value());*/
 
 
-    $.getJSON( "js/filterdata.json", function(jsonFilterData) {
+    $.getJSON("js/filterdata.json", function (jsonFilterData) {
         setTableContent(jsonFilterData);
     });
 
-    function setTableContent(jsonFilterData)
-    {
+    function setTableContent(jsonFilterData) {
         $("#filter-table").kendoGrid({
             /*dataSource: {
                 //data: createRandomData(50)
@@ -194,33 +187,35 @@ $(document).ready(function()
             groupable: false,
             sortable: true,
 
-            columns: [ {
+            columns: [{
                 field: "name",
-                width:110,
+                width: 110,
                 title: "Name"
-            } , {
+            }, {
                 field: "selector",
                 width: 130,
                 title: "Bedingung"
-            } , {
+            }, {
                 width: 120,
                 field: "value",
                 title: "Wert"
-            }
-            ]
+            }]
         });
     }
 
     //changes the text of the "And" and "Or" of the filter menu
-    $("select[name='logic']").each(function() {
+    $("select[name='logic']").each(function () {
         //changes the dataSource of the "And/Or" dropdown
-        $(this).data("kendoDropDownList").dataSource.data([
-            {text: "CustomAnd", value: "and"}, //sets the text of the "And" option
-            {text: "CustomOr", value: "or"} //sets the text of the "Or" option
+        $(this).data("kendoDropDownList").dataSource.data([{
+                text: "CustomAnd",
+                value: "and"
+            }, //sets the text of the "And" option
+            {
+                text: "CustomOr",
+                value: "or"
+            } //sets the text of the "Or" option
         ]);
         //sets the default selected list option
         $(this).data("kendoDropDownList").select(0);
     });
 });
-
-
