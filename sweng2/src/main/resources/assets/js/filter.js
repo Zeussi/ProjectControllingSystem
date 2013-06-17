@@ -135,7 +135,9 @@ $("#filter-submit").click(function () {
 		filterElements.push(element);
 		
 	}
-	drawDiagrams(filterElements, 'PERFORMANCE');
+	drawDiagrams(filterElements, 'PERFORMANCE', "diagram-auslastung");
+	drawDiagrams(filterElements, 'ILL', "diagram-krankheitsauslastung");
+	drawDiagrams(filterElements, 'RETURN', "diagram-ertrag");
 	
     win.center();
     win.open();
@@ -143,39 +145,6 @@ $("#filter-submit").click(function () {
 });
 
 $(document).ready(function () {
-    /*function startChange() {
-        var startDate = start.value(),
-            endDate = end.value();
-
-        if (startDate) {
-            startDate = new Date(startDate);
-            startDate.setDate(startDate.getDate());
-            end.min(startDate);
-        } else if (endDate) {
-            start.max(new Date(endDate));
-        } else {
-            endDate = new Date();
-            start.max(endDate);
-            end.min(endDate);
-        }
-    }
-
-    function endChange() {
-        var endDate = end.value(),
-            startDate = start.value();
-
-        if (endDate) {
-            endDate = new Date(endDate);
-            endDate.setDate(endDate.getDate());
-            start.max(endDate);
-        } else if (startDate) {
-            end.min(new Date(startDate));
-        } else {
-            endDate = new Date();
-            start.max(endDate);
-            end.min(endDate);
-        }
-    }*/
 
     var start = $("#zeitfilter-start").kendoDatePicker({
         /*change: startChange,*/
