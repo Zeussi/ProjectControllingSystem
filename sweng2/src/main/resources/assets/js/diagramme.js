@@ -5,19 +5,19 @@ function drawDiagrams(JSONFilterRules, keyFigure, diagramID) {
         data: JSON.stringify(JSONFilterRules),
         dataType: "json",
         contentType: "application/json",
-    }).done(function (data2) {
+    }).done(function (result) {
         var dataPre = {
-            labels: [data2.valuesX],
-            datasets: [data2.valuesY]
+            labels: [result.valuesX],
+            datasets: [result.valuesY]
         }
         dataPre = {
-            labels: data2.valuesX,
+            labels: result.valuesX,
             datasets: [{
                 fillColor: "rgba(220,220,220,0.5)",
                 strokeColor: "rgba(220,220,220,1)",
                 pointColor: "rgba(220,220,220,1)",
                 pointStrokeColor: "#fff",
-                data: data2.valuesY
+                data: result.valuesY
             }]
         }
 
