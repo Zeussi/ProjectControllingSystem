@@ -1,6 +1,9 @@
 package edu.hm.cs.team8.timetrackingmangement.ui;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
 
 import javax.ws.rs.GET;
@@ -23,18 +26,26 @@ public class TimeTrackingResource {
 	}
 
 	@GET
-	public Set<TimeTrackingTO> getMasterData() {
+	public List<TimeTrackingTO> getMasterData() {
 		return parse(timeTracking.getTimeTrackings());
 	}
 
-	private Set<TimeTrackingTO> parse(Set<TimeTrackingEntry> timeTrackings) {
+	private List<TimeTrackingTO> parse(Set<TimeTrackingEntry> timeTrackings) {
 
-		final Set<TimeTrackingTO> result = new HashSet<>();
+		final List<TimeTrackingTO> result = new ArrayList<>();
 
 		for (TimeTrackingEntry timeTracking : timeTrackings)
 			result.add(new TimeTrackingTO(timeTracking));
 
+		Collections.sort(result, new Comparator<TimeTrackingTO>() {
+
+			@Override
+			public int compare(TimeTrackingTO o1, TimeTrackingTO o2) {
+				return (int) (o1.getMid() - o2.getMid());
+
+			}
+		});
+
 		return result;
 	}
-
 }

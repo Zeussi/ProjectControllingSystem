@@ -9,6 +9,81 @@ public class TimeTrackingTO {
 	private String businessArea;
 	private double costRate;
 	private String date;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((account == null) ? 0 : account.hashCode());
+		result = prime * result + (billable ? 1231 : 1237);
+		result = prime * result
+				+ ((businessArea == null) ? 0 : businessArea.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(costRate);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		temp = Double.doubleToLongBits(incrementalCosts);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + level;
+		result = prime * result + ((member == null) ? 0 : member.hashCode());
+		result = prime * result + (int) (mid ^ (mid >>> 32));
+		result = prime * result + ((project == null) ? 0 : project.hashCode());
+		temp = Double.doubleToLongBits(workedHours);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TimeTrackingTO other = (TimeTrackingTO) obj;
+		if (account == null) {
+			if (other.account != null)
+				return false;
+		} else if (!account.equals(other.account))
+			return false;
+		if (billable != other.billable)
+			return false;
+		if (businessArea == null) {
+			if (other.businessArea != null)
+				return false;
+		} else if (!businessArea.equals(other.businessArea))
+			return false;
+		if (Double.doubleToLongBits(costRate) != Double
+				.doubleToLongBits(other.costRate))
+			return false;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (Double.doubleToLongBits(incrementalCosts) != Double
+				.doubleToLongBits(other.incrementalCosts))
+			return false;
+		if (level != other.level)
+			return false;
+		if (member == null) {
+			if (other.member != null)
+				return false;
+		} else if (!member.equals(other.member))
+			return false;
+		if (mid != other.mid)
+			return false;
+		if (project == null) {
+			if (other.project != null)
+				return false;
+		} else if (!project.equals(other.project))
+			return false;
+		if (Double.doubleToLongBits(workedHours) != Double
+				.doubleToLongBits(other.workedHours))
+			return false;
+		return true;
+	}
+
 	private double incrementalCosts;
 	private int level;
 	private String member;

@@ -10,20 +10,11 @@ public class TestPOST {
 
 	public static void main(String[] args) throws Exception {
 
-		HttpURLConnection conn = (HttpURLConnection) new URL("http://localhost:8080/service/time-behaviour-keyfigures/ILL")
+		HttpURLConnection conn = (HttpURLConnection) new URL("http://localhost:8080/service/time-trackings")
 				.openConnection();
-		conn.setRequestMethod("POST");
+		conn.setRequestMethod("GET");
 		conn.setDoOutput(true);
-		conn.setRequestProperty("Content-Type", "application/json");
 
-		final String json = "[]";
-		
-		final DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
-		wr.writeBytes(json);
-		wr.flush();
-		wr.close();
-
-		System.out.println(json);
 
 		final BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
