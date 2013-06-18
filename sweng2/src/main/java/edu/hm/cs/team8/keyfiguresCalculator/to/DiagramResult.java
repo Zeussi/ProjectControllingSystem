@@ -11,13 +11,13 @@ public class DiagramResult {
 
 	private String labelY;
 
-	private Map<String, String> valuesX = new TreeMap<>();
+	private Map<String, Double> valuesX = new TreeMap<>();
 
 	public DiagramResult() {
 	}
 
 	public void addXandYValue(String x, String y) {
-		valuesX.put(x, y);
+		valuesX.put(x, Double.parseDouble(y));
 	}
 
 	public String getLabelX() {
@@ -32,7 +32,7 @@ public class DiagramResult {
 		return new ArrayList<>(valuesX.keySet());
 	}
 
-	public List<String> getValuesY() {
+	public List<Double> getValuesY() {
 		return new ArrayList<>(valuesX.values());
 	}
 

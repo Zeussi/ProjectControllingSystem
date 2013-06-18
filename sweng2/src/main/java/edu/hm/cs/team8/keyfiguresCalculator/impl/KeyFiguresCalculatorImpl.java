@@ -131,8 +131,7 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 
 			temp.add(entry);
 
-			if (entry.getMonth() < 10)
-				fiteredData.put(date, temp);
+			fiteredData.put(date, temp);
 		}
 
 		final DiagramResult result = new DiagramResult();

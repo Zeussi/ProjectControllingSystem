@@ -37,13 +37,13 @@ public class KeyFigureCalculatorTest {
 						"MemberFilter", "Elvira Seidel"));
 
 		Assert.assertEquals(diagram.getValuesX().get(0), "01-2013");
-		Assert.assertEquals(diagram.getValuesY().get(0), "9.5");
+		Assert.assertEquals(diagram.getValuesY().get(0).doubleValue(), 9.5, 0.01);
 		
 		Assert.assertEquals(diagram.getValuesX().get(1), "02-2013");
-		Assert.assertEquals(diagram.getValuesY().get(1), "1.5");
+		Assert.assertEquals(diagram.getValuesY().get(1).doubleValue(), 1.5, 0.01);
 		
 		Assert.assertEquals(diagram.getValuesX().get(2), "03-2013");
-		Assert.assertEquals(diagram.getValuesY().get(2), "8.0");
+		Assert.assertEquals(diagram.getValuesY().get(2).doubleValue(), 8.0, 0.01);
 		
 	}
 }
