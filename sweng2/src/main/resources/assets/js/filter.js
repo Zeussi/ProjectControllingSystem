@@ -150,46 +150,31 @@ $(document).ready(function () {
         /*change: startChange,*/
         format: "MM.yyyy"
     }).data("kendoDatePicker");
-    /*)
-    var end = $("#zeitfilter-end").kendoDatePicker({
-        change: endChange,
-        format: "MM.yyyy"
-    }).data("kendoDatePicker");
+	
+	$("#filter-table").kendoGrid({
 
-    start.max(end.value());
-    end.min(start.value());*/
+		groupable: false,
+		sortable: true,
 
+		columns: [
+		{
+			field: "name",
+			width: 110,
+			title: "Name"
+		}, 
+		{
+			width: 120,
+			field: "value",
+			title: "Wert"
+		},
+		{
+			command: { name: "destroy", text: ""},
+			title: "&nbsp;",
+			width: "20px"
+		}]
+		,editable: true
 
-    $.getJSON("js/filterdata.json", function (jsonFilterData) {
-        setTableContent(jsonFilterData);
-    });
-
-    function setTableContent(jsonFilterData) {
-        $("#filter-table").kendoGrid({
-
-            groupable: false,
-            sortable: true,
-
-            columns: [
-			{
-                field: "name",
-                width: 110,
-                title: "Name"
-            }, 
-			{
-                width: 120,
-                field: "value",
-                title: "Wert"
-            },
-			{
-				command: { name: "destroy", text: ""},
-				title: "&nbsp;",
-				width: "20px"
-			}]
-			,editable: true
-
-        });
-    }
+	});
 
     //changes the text of the "And" and "Or" of the filter menu
     $("select[name='logic']").each(function () {
