@@ -166,22 +166,28 @@ $(document).ready(function () {
 
     function setTableContent(jsonFilterData) {
         $("#filter-table").kendoGrid({
-            /*dataSource: {
-                //data: createRandomData(50)
-                data: jsonFilterData['result']
-            },*/
+
             groupable: false,
             sortable: true,
 
-            columns: [{
+            columns: [
+			{
                 field: "name",
                 width: 110,
                 title: "Name"
-            }, {
+            }, 
+			{
                 width: 120,
                 field: "value",
                 title: "Wert"
-            }]
+            },
+			{
+				command: { name: "destroy", text: ""},
+				title: "&nbsp;",
+				width: "20px"
+			}]
+			,editable: true
+
         });
     }
 
