@@ -2,7 +2,6 @@
 
 import csv
 import random
-import StringIO
 
 
 projects = ['COMMON', '2013-FIRSTCUSTOMER-FU', '2011-NEPTUN']
