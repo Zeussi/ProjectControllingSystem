@@ -182,4 +182,45 @@ public class KeyFiguresCalculatorImpl implements IKeyFiguresCalculator {
 
 	}
 
+	@Override
+	public DiagramResult calculateProjectBehaviourFigure(String keyfigureTo,
+			FilterTO... filters) {
+
+		final Map<String, Set<TimeTrackingEntry>> fiteredData = new HashMap<>();
+		final KeyFigures keyFigureToCalculate = KeyFigures
+				.parseKeyFigure(keyfigureTo);
+
+		final Set<TimeTrackingEntry> entries = and(or(
+				FilterParser.parse(filters), timeTracking.getTimeTrackings()));
+
+		for (TimeTrackingEntry entry : entries) {
+
+			String project = entry.getAccount().getProject().getName();
+			Set<TimeTrackingEntry> temp = fiteredData.get(project);
+			if (temp == null)
+				temp = new HashSet<>();
+
+			temp.add(entry);
+
+			fiteredData.put(project, temp);
+		}
+
+		final DiagramResult result = new DiagramResult();
+		result.setLabelX(keyFigureToCalculate.toString());
+		result.setLabelY(keyFigureToCalculate.getMeasure().toString());
+
+		for (Map.Entry<String, Set<TimeTrackingEntry>> entry : fiteredData
+				.entrySet()) {
+
+			final KeyFigureResult keyFigures = calculateFigures(
+					entry.getValue(), keyFigureToCalculate).iterator().next();
+
+			result.addXandYValue(entry.getKey(), keyFigures.getValue()
+					.toString());
+		}
+
+		return result;
+		
+	}
+
 }

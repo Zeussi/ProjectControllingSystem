@@ -12,6 +12,7 @@ import com.yammer.dropwizard.jdbi.DBIFactory;
 import edu.hm.cs.team8.keyfiguresCalculator.IKeyFiguresCalculator;
 import edu.hm.cs.team8.keyfiguresCalculator.KeyFiguresCalculatorFactory;
 import edu.hm.cs.team8.keyfiguresCalculator.ui.OnlyKeyFiguresResource;
+import edu.hm.cs.team8.keyfiguresCalculator.ui.ProjectBehaviourKeyFigureRessource;
 import edu.hm.cs.team8.keyfiguresCalculator.ui.TimeBehaviourKeyFiguresResource;
 import edu.hm.cs.team8.timetrackingmangement.ITimeTrackingMangement;
 import edu.hm.cs.team8.timetrackingmangement.TimeTrackingManagementFactory;
@@ -47,6 +48,7 @@ public class ProjectControllingService extends
 		environment.addResource(new TimeTrackingResource(management));
 		environment.addResource(new OnlyKeyFiguresResource(calc));
 		environment.addResource(new TimeBehaviourKeyFiguresResource(calc));
+		environment.addResource(new ProjectBehaviourKeyFigureRessource(calc));
 
 	}
 

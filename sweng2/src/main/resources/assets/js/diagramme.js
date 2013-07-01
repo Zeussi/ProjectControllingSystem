@@ -1,6 +1,6 @@
-function drawDiagrams(JSONFilterRules, keyFigure, diagramID) {
+function drawDiagrams(JSONFilterRules, keyFigure, diagramID, serviceName) {
     jQuery.ajax({
-        url: "service/time-behaviour-keyfigures/" + keyFigure,
+        url: "service/" + serviceName + "/" + keyFigure,
         type: "POST",
         data: JSON.stringify(JSONFilterRules),
         dataType: "json",

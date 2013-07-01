@@ -70,18 +70,34 @@
 </div>
 <div id="filter-window" style="display: none">
 	<br/>
-	<a name="1">Projektauslastung</a><br/>
-	<canvas id="diagram-auslastung" width="800" height="700"></canvas>
+	
+	<table border="0">
+	  <tr>
+		<td><h2>ARQ</h2></td>
+		<td><p>Automatic Repeat Request. Eine allgemeine Bezeichnung
+		f&uuml;r Fehlerprotokolle, die &Uuml;bertragungsfehler erkennt und
+		defekte Bl&ouml;cke selbst&auml;ndig wiederholt</p></td>
+	  </tr>
+	  <tr>
+		<td><h2>HDLC</h2></td>
+		<td><p>High Level Data Link Control. Ein Standard-Protokoll, das
+		von der Kommission f&uuml;r internationale Standards f&uuml;r
+		Softwareanwendungen in synchronen Anlagen verwendet wird.</p></td>
+	  </tr>
+	</table>
+	<a name="1">Auslastung im Zeitverlauf</a><br/>
+	<canvas id="diagram-auslastung-timebehaviour" width="800" height="700"></canvas>
 	<br/><br/>
-	<a name="2">Ertrag</a><br/>
-	<canvas id="diagram-ertrag" width="800" height="700"></canvas>
-	<br/><br/><br/>
-	<a name="3">Krankheitsauslastung</a><br/>
-	<canvas id="diagram-krankheitsauslastung" width="800" height="700"></canvas>
-	<br/><br/><br/>
-	<a name="4">Gesamtauslastung</a><br/>
-	<canvas id="diagram-auslastung-zeit" width="800" height="700"></canvas>
+	<a name="2">Krankheitsquote im Zeitverlauf</a><br/>
+	<canvas id="diagram-krankheitsauslastung-timebehaviour" width="800" height="700"></canvas>
 	<br/><br/>
+	<a name="3">Auslastung innerhalb der Projekte</a><br/>
+	<canvas id="diagram-ertrag-projectbehaviour" width="800" height="700"></canvas>
+	<br/><br/>
+	<a name="4">Krankheitsquote innerhalb der Projekte</a><br/>
+	<canvas id="diagram-krankheitsquote-projectbehaviour" width="800" height="700"></canvas>
+	<br/><br/>
+	<br/>
 </div>
 <div id="mitarbeiterfilter-window" style="display: none">
 	<select id="mitarbeiterfilter-type">

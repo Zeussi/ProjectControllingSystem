@@ -12,4 +12,8 @@ public interface IKeyFiguresCalculator {
 
 	DiagramResult calculateTimeBehaviourFigure(String keyfigure,
 			FilterTO... filters);
+	
+	DiagramResult calculateProjectBehaviourFigure(String keyfigure,
+			FilterTO... filters);
+	
 }

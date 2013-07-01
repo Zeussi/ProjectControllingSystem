@@ -135,9 +135,10 @@ $("#filter-submit").click(function () {
 		filterElements.push(element);
 		
 	}
-	drawDiagrams(filterElements, 'PERFORMANCE', "diagram-auslastung");
-	drawDiagrams(filterElements, 'ILL', "diagram-krankheitsauslastung");
-	drawDiagrams(filterElements, 'RETURN', "diagram-ertrag");
+	drawDiagrams(filterElements, 'PERFORMANCE', "diagram-auslastung-timebehaviour", "time-behaviour-keyfigures");
+	drawDiagrams(filterElements, 'ILL', "diagram-krankheitsauslastung-timebehaviour", "time-behaviour-keyfigures");
+	drawDiagrams(filterElements, 'PERFORMANCE', "diagram-ertrag-projectbehaviour", "project-behaviour-keyfigures");
+	drawDiagrams(filterElements, 'ILL', "diagram-krankheitsquote-projectbehaviour", "project-behaviour-keyfigures");
 	
     win.center();
     win.open();
