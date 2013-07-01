@@ -71,20 +71,17 @@
 <div id="filter-window" style="display: none">
 	<br/>
 	
-	<table border="0">
-	  <tr>
-		<td><h2>ARQ</h2></td>
-		<td><p>Automatic Repeat Request. Eine allgemeine Bezeichnung
-		f&uuml;r Fehlerprotokolle, die &Uuml;bertragungsfehler erkennt und
-		defekte Bl&ouml;cke selbst&auml;ndig wiederholt</p></td>
-	  </tr>
-	  <tr>
-		<td><h2>HDLC</h2></td>
-		<td><p>High Level Data Link Control. Ein Standard-Protokoll, das
-		von der Kommission f&uuml;r internationale Standards f&uuml;r
-		Softwareanwendungen in synchronen Anlagen verwendet wird.</p></td>
-	  </tr>
-	</table>
+<table id="grid">
+                <thead>
+                    <tr>
+                        <th data-field="kennzahl">Kennzahl</th>
+                        <th data-field="value">Wert</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+	<br/><br/>
 	<a name="1">Auslastung im Zeitverlauf</a><br/>
 	<canvas id="diagram-auslastung-timebehaviour" width="800" height="700"></canvas>
 	<br/><br/>

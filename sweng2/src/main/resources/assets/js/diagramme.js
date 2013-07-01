@@ -26,3 +26,25 @@ function drawDiagrams(JSONFilterRules, keyFigure, diagramID, serviceName) {
 
     });
 }
+
+function drawTable(JSONFilterRules, keyFigure, diagramID) {
+    jQuery.ajax({
+        url: "service/only-keyfigures",
+        type: "POST",
+        data: JSON.stringify(JSONFilterRules),
+        dataType: "json",
+        contentType: "application/json",
+    }).done(function (result) {
+
+        for (var i = 0; i < result.length; i++)
+		{			
+			    $('#grid').data('kendoGrid').dataSource.add({
+				kennzahl: result[i].keyFigure,
+				value: result[i].keyFigureValue
+				});
+			
+		}
+
+
+    });
+}

@@ -135,10 +135,13 @@ $("#filter-submit").click(function () {
 		filterElements.push(element);
 		
 	}
+	
+	drawTable(filterElements, 'ILL', "diagram-krankheitsquote-projectbehaviour", "project-behaviour-keyfigures");
 	drawDiagrams(filterElements, 'PERFORMANCE', "diagram-auslastung-timebehaviour", "time-behaviour-keyfigures");
 	drawDiagrams(filterElements, 'ILL', "diagram-krankheitsauslastung-timebehaviour", "time-behaviour-keyfigures");
 	drawDiagrams(filterElements, 'PERFORMANCE', "diagram-ertrag-projectbehaviour", "project-behaviour-keyfigures");
 	drawDiagrams(filterElements, 'ILL', "diagram-krankheitsquote-projectbehaviour", "project-behaviour-keyfigures");
+	
 	
     win.center();
     win.open();
@@ -176,6 +179,13 @@ $(document).ready(function () {
 		,editable: true
 
 	});
+	
+	$("#grid").kendoGrid({
+	height: 330
+	});
+
+
+
 
     //changes the text of the "And" and "Or" of the filter menu
     $("select[name='logic']").each(function () {
